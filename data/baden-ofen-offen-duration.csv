@@ -1,0 +1,11 @@
+speaker_id,pair_id,context_id,condition,token_id,duration_ms,word
+S1,Ofen / offen,first-trip sentence workbook,offen,baden-s1-offen,141.1,offen
+S1,Ofen / offen,first-trip sentence workbook,Ofen,baden-s1-ofen,240.7,Ofen
+S2,Ofen / offen,first-trip sentence workbook,offen,baden-s2-offen,163.4,offen
+S2,Ofen / offen,first-trip sentence workbook,Ofen,baden-s2-ofen,241.9,Ofen
+S3,Ofen / offen,first-trip sentence workbook,offen,baden-s3-offen,152.8,offen
+S3,Ofen / offen,first-trip sentence workbook,Ofen,baden-s3-ofen,318.9,Ofen
+S4,Ofen / offen,first-trip sentence workbook,offen,baden-s4-offen,99.0,offen
+S4,Ofen / offen,first-trip sentence workbook,Ofen,baden-s4-ofen,200.6,Ofen
+S5,Ofen / offen,first-trip sentence workbook,offen,baden-s5-offen,112.9,offen
+S5,Ofen / offen,first-trip sentence workbook,Ofen,baden-s5-ofen,303.5,Ofen

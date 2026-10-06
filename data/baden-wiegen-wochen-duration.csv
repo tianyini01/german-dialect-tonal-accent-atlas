@@ -1,0 +1,13 @@
+speaker_id,pair_id,context_id,condition,token_id,duration_ms,word
+S1,wiegen / Wochen,first-trip sentence workbook,Wochen,baden-s1-wochen,158.8,Wochen
+S1,wiegen / Wochen,first-trip sentence workbook,wiegen,baden-s1-wiegen,210.9,wiegen
+S2,wiegen / Wochen,first-trip sentence workbook,Wochen,baden-s2-wochen,163.3,Wochen
+S2,wiegen / Wochen,first-trip sentence workbook,wiegen,baden-s2-wiegen,220.9,wiegen
+S3,wiegen / Wochen,first-trip sentence workbook,Wochen,baden-s3-wochen,143.1,Wochen
+S3,wiegen / Wochen,first-trip sentence workbook,wiegen,baden-s3-wiegen,223.4,wiegen
+S4,wiegen / Wochen,first-trip sentence workbook,Wochen,baden-s4-wochen,107.0,Wochen
+S4,wiegen / Wochen,first-trip sentence workbook,wiegen,baden-s4-wiegen,216.8,wiegen
+S5,wiegen / Wochen,first-trip sentence workbook,Wochen,baden-s5-wochen,123.9,Wochen
+S5,wiegen / Wochen,first-trip sentence workbook,wiegen,baden-s5-wiegen,206.6,wiegen
+S6,wiegen / Wochen,first-trip sentence workbook,Wochen,baden-s6-wochen,133.5,Wochen
+S6,wiegen / Wochen,first-trip sentence workbook,wiegen,baden-s6-wiegen,228.3,wiegen

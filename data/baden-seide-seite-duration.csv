@@ -1,0 +1,12 @@
+speaker_id,pair_id,context_id,condition,token_id,duration_ms,word
+S1,Seide / Seite,first-trip sentence workbook,Seite,baden-s1-seite,134.5,Seite
+S1,Seide / Seite,first-trip sentence workbook,Seide,baden-s1-seide,161.9,Seide
+S2,Seide / Seite,first-trip sentence workbook,Seite,baden-s2-seite,103.2,Seite
+S2,Seide / Seite,first-trip sentence workbook,Seide,baden-s2-seide,164.8,Seide
+S3,Seide / Seite,first-trip sentence workbook,Seite,baden-s3-seite,130.3,Seite
+S3,Seide / Seite,first-trip sentence workbook,Seide,baden-s3-seide,164.6,Seide
+S4,Seide / Seite,first-trip sentence workbook,Seite,baden-s4-seite,85.0,Seite
+S4,Seide / Seite,first-trip sentence workbook,Seide,baden-s4-seide,123.7,Seide
+S5,Seide / Seite,first-trip sentence workbook,Seide,baden-s5-seide,199.5,Seide
+S6,Seide / Seite,first-trip sentence workbook,Seite,baden-s6-seite,118.4,Seite
+S6,Seide / Seite,first-trip sentence workbook,Seide,baden-s6-seide,163.4,Seide

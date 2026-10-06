@@ -1,0 +1,268 @@
+[
+  {
+    "id": "leer-low-german",
+    "title": "Leer Low German",
+    "family": "Low German",
+    "place": "Leer area, Germany",
+    "placeNote": "Study-level area label. The point is an approximate city anchor, not a speaker location or a dialect boundary.",
+    "map": {
+      "latitude": 53.2315744,
+      "longitude": 7.4610043,
+      "precision": "approximate city anchor",
+      "source": "https://www.geonames.org/2879697/leer.html",
+      "distributionGeometry": null
+    },
+    "speakerCount": 10,
+    "summary": "Long and overlong vowels in the Leer Low German research materials.",
+    "recordings": "WAV and TextGrid sources are held in local research files; no media is bundled here.",
+    "access": "Approved derived measurements are available for browser analysis. Original recordings and annotations are not included.",
+    "measurementSets": [
+      {
+        "id": "leer-duration",
+        "kind": "duration",
+        "title": "Vowel duration",
+        "rowCount": 1200,
+        "rowUnit": "main-analysis tokens",
+        "itemCount": "6 word pairs",
+        "contextCount": "10 prosodic environments",
+        "summary": "Long and overlong vowels across six word pairs and ten prosodic environments.",
+        "variables": [
+          "speaker ID",
+          "word and word pair",
+          "quantity",
+          "sentence type",
+          "position",
+          "focus",
+          "vowel duration (ms)"
+        ],
+        "source": "Leer vowel-duration reanalysis table.",
+        "method": "The source analysis fits a mixed-effects model of log duration. The browser displays measured token durations in milliseconds for descriptive comparison.",
+        "nativeProfile": "Leer duration CSV",
+        "dataFile": "./data/leer-duration.csv"
+      },
+      {
+        "id": "leer-f0",
+        "kind": "f0",
+        "title": "F0 contours",
+        "rowCount": 9677,
+        "rowUnit": "measured Hz points from 479 verified contours",
+        "itemCount": "6 word pairs",
+        "contextCount": "4 focus environments",
+        "summary": "Physical-time F0 samples for long and overlong vowels; one contour without a verifiable TextGrid was excluded.",
+        "variables": [
+          "speaker ID",
+          "word pair",
+          "word",
+          "length",
+          "environment",
+          "elapsed vowel time (ms)",
+          "F0 (Hz)",
+          "measured vowel duration (ms)"
+        ],
+        "source": "Leer ProsodyPro F0 measurements with checked vowel boundaries.",
+        "method": "Browser curves summarize observed 10 ms bins in Hz; token traces retain physical time. One unverified contour was excluded.",
+        "timeBasis": "Leer F0 uses verified real-time ProsodyPro Hz samples. One contour lacking a matching TextGrid is excluded. Leer F0 speaker codes are independent of the duration table's codes and must not be matched by ID.",
+        "nativeProfile": "Physical-time F0 CSV",
+        "dataFile": "./data/leer-f0-physical.csv"
+      }
+    ]
+  },
+  {
+    "id": "aachen-franconian",
+    "title": "Aachen Franconian",
+    "family": "Franconian",
+    "place": "Aachen area, Germany",
+    "placeNote": "Study-level area label. Some source metadata lack a region value; no individual location is inferred.",
+    "map": {
+      "latitude": 50.7766356,
+      "longitude": 6.0834217,
+      "precision": "approximate city anchor",
+      "source": "https://www.geonames.org/2800866/aachen.html",
+      "distributionGeometry": null
+    },
+    "speakerCount": 8,
+    "summary": "Tonal accent contours in the Aachen research materials.",
+    "recordings": "WAV and TextGrid sources are held in local research files; no media is bundled here.",
+    "access": "Approved derived measurements are available for browser analysis. Original recordings and annotations are not included.",
+    "measurementSets": [
+      {
+        "id": "aachen-f0",
+        "kind": "f0",
+        "title": "Tonal accent F0 contours",
+        "rowCount": 12012,
+        "rowUnit": "time positions from 1,092 contours (11,248 measured Hz; 764 missing)",
+        "itemCount": "13 word-pair labels, including unpaired material",
+        "contextCount": "4 sentence/position contexts",
+        "summary": "F0 in hertz at recorded within-vowel times for two accent categories; missing measurements remain marked.",
+        "variables": [
+          "speaker ID",
+          "word pair",
+          "word",
+          "accent",
+          "context",
+          "elapsed vowel time (ms)",
+          "F0 (Hz)"
+        ],
+        "source": "Aachen tonal-accent contour measurements.",
+        "method": "The source analysis fits a GAMM with temporal dependence. Browser curves show observed Hz at eleven recorded vowel-relative times without filling missing points.",
+        "timeBasis": "Aachen F0 uses recorded sample times relative to each vowel onset, with eleven positions per token. Missing Hz values remain missing.",
+        "nativeProfile": "Physical-time F0 CSV",
+        "dataFile": "./data/aachen-f0-physical.csv"
+      }
+    ]
+  },
+  {
+    "id": "baden-low-german",
+    "title": "Baden Low German",
+    "family": "Low German",
+    "place": "Baden (Achim), Germany",
+    "placeNote": "Baden in Achim, district of Verden, Lower Saxony. The marker is a locality anchor, not a speaker or recording location.",
+    "map": {
+      "latitude": 53.002724,
+      "longitude": 9.085933,
+      "precision": "approximate locality anchor",
+      "source": "https://www.geonames.org/2953505/baden.html",
+      "distributionGeometry": null
+    },
+    "speakerCount": null,
+    "summary": "A first-trip Baden workbook contains paired vowel durations for three lexical pairs. The included derived tables support exploratory comparisons; workbook values have not been fully reconciled with TextGrid boundaries.",
+    "recordings": "Local WAV and TextGrid files are present in the Baden fieldwork folders; no media is bundled here.",
+    "access": "Approved derived measurements are available for browser analysis. Original recordings and annotations are not included.",
+    "measurementSets": [
+      {
+        "kind": "duration",
+        "rowUnit": "workbook vowel-duration tokens",
+        "itemCount": "1 lexical pair",
+        "contextCount": "1 first-trip workbook context",
+        "variables": [
+          "speaker-coded workbook series (S1–S6)",
+          "lexical item",
+          "first-vowel duration (ms)"
+        ],
+        "source": "Baden fieldwork duration measurements.",
+        "method": "Exploratory paired lexical comparison across source speaker-coded series using workbook values converted from seconds to milliseconds. Distinct participants and TextGrid boundaries have not been independently verified; the three different word contrasts are analyzed separately.",
+        "nativeProfile": "Derived standard duration CSV",
+        "id": "baden-ofen-offen-duration",
+        "title": "Ofen / offen vowel duration",
+        "rowCount": 10,
+        "summary": "Five complete worksheet-ID pairs for Ofen and offen.",
+        "dataFile": "./data/baden-ofen-offen-duration.csv",
+        "defaultConditionA": "offen",
+        "defaultConditionB": "Ofen",
+        "analysisUnit": "speaker-coded series"
+      },
+      {
+        "kind": "duration",
+        "rowUnit": "workbook vowel-duration tokens",
+        "itemCount": "1 lexical pair",
+        "contextCount": "1 first-trip workbook context",
+        "variables": [
+          "speaker-coded workbook series (S1–S6)",
+          "lexical item",
+          "first-vowel duration (ms)"
+        ],
+        "source": "Baden fieldwork duration measurements.",
+        "method": "Exploratory paired lexical comparison across source speaker-coded series using workbook values converted from seconds to milliseconds. Distinct participants and TextGrid boundaries have not been independently verified; the three different word contrasts are analyzed separately.",
+        "nativeProfile": "Derived standard duration CSV",
+        "id": "baden-wiegen-wochen-duration",
+        "title": "wiegen / Wochen vowel duration",
+        "rowCount": 12,
+        "summary": "Six complete worksheet-ID pairs for wiegen and Wochen.",
+        "dataFile": "./data/baden-wiegen-wochen-duration.csv",
+        "defaultConditionA": "Wochen",
+        "defaultConditionB": "wiegen",
+        "analysisUnit": "speaker-coded series"
+      },
+      {
+        "kind": "duration",
+        "rowUnit": "workbook vowel-duration tokens",
+        "itemCount": "1 lexical pair",
+        "contextCount": "1 first-trip workbook context",
+        "variables": [
+          "speaker-coded workbook series (S1–S6)",
+          "lexical item",
+          "first-vowel duration (ms)"
+        ],
+        "source": "Baden fieldwork duration measurements.",
+        "method": "Exploratory paired lexical comparison across source speaker-coded series using workbook values converted from seconds to milliseconds. Distinct participants and TextGrid boundaries have not been independently verified; the three different word contrasts are analyzed separately.",
+        "nativeProfile": "Derived standard duration CSV",
+        "id": "baden-seide-seite-duration",
+        "title": "Seide / Seite vowel duration",
+        "rowCount": 11,
+        "summary": "Five complete worksheet-ID pairs for Seide and Seite; one additional Seide token has no paired Seite value.",
+        "dataFile": "./data/baden-seide-seite-duration.csv",
+        "defaultConditionA": "Seite",
+        "defaultConditionB": "Seide",
+        "analysisUnit": "speaker-coded series"
+      }
+    ]
+  },
+  {
+    "id": "cologne-franconian",
+    "title": "Cologne Franconian",
+    "family": "Franconian",
+    "place": "Cologne area, Germany",
+    "placeNote": "Research-level Cologne area label. The marker is an approximate city anchor, not a speaker or recording location.",
+    "map": {
+      "latitude": 50.9333333,
+      "longitude": 6.95,
+      "precision": "approximate city anchor",
+      "source": "https://www.geonames.org/2886242/koeln.html",
+      "distributionGeometry": null
+    },
+    "speakerCount": 1,
+    "summary": "Cologne fieldwork includes paired F/NF duration measurements for full vowels and schwa from one recorded participant. Results are descriptive for that recording.",
+    "recordings": "Local WAV and TextGrid files are present in the Cologne fieldwork folder; no media is bundled here.",
+    "access": "Approved derived measurements are available for browser analysis. Original recordings and annotations are not included.",
+    "measurementSets": [
+      {
+        "kind": "duration",
+        "rowCount": 48,
+        "rowUnit": "duration tokens",
+        "itemCount": "12 lexical items",
+        "contextCount": "4 sentence/accent contexts",
+        "variables": [
+          "pseudonymous speaker ID",
+          "lexical item",
+          "sentence type (DEC/INT)",
+          "source accent code (1/2)",
+          "source F/NF condition",
+          "vowel duration (ms)"
+        ],
+        "source": "Cologne fieldwork duration measurements.",
+        "method": "Descriptive within-recording F/NF duration comparison matched by word and sentence/accent context; one participant only. Source codes are not expanded beyond their documented labels.",
+        "nativeProfile": "Derived standard duration CSV",
+        "defaultConditionA": "NF",
+        "defaultConditionB": "F",
+        "id": "cologne-full-vowel-duration",
+        "title": "Full vowel duration",
+        "summary": "Forty-eight full-vowel duration tokens from the Cologne fieldwork worksheet; values converted from seconds to milliseconds.",
+        "dataFile": "./data/cologne-full-vowel-duration.csv"
+      },
+      {
+        "kind": "duration",
+        "rowCount": 48,
+        "rowUnit": "duration tokens",
+        "itemCount": "12 lexical items",
+        "contextCount": "4 sentence/accent contexts",
+        "variables": [
+          "pseudonymous speaker ID",
+          "lexical item",
+          "sentence type (DEC/INT)",
+          "source accent code (1/2)",
+          "source F/NF condition",
+          "vowel duration (ms)"
+        ],
+        "source": "Cologne fieldwork duration measurements.",
+        "method": "Descriptive within-recording F/NF duration comparison matched by word and sentence/accent context; one participant only. Source codes are not expanded beyond their documented labels.",
+        "nativeProfile": "Derived standard duration CSV",
+        "defaultConditionA": "NF",
+        "defaultConditionB": "F",
+        "id": "cologne-schwa-duration",
+        "title": "Schwa duration",
+        "summary": "Forty-eight schwa duration tokens from the Cologne fieldwork worksheet; values converted from seconds to milliseconds.",
+        "dataFile": "./data/cologne-schwa-duration.csv"
+      }
+    ]
+  }
+]
