@@ -5,10 +5,10 @@ import { comparisonConditions, comparablePairNames, matchedSpeakerGroups,
   sharedSpeakerPairs } from "./speaker-comparison.mjs";
 import { renderGammView } from "./gamm-view.mjs";
 import { renderPhysicalTimeGammView } from "./physical-gamm-view.mjs";
-import { renderAtlasMap } from "./atlas.mjs?v=21";
-import { renderLiveAtlasMap, destroyLiveAtlasMap } from "./live-atlas.mjs?v=21";
+import { renderAtlasMap } from "./atlas.mjs?v=22";
+import { renderLiveAtlasMap, destroyLiveAtlasMap } from "./live-atlas.mjs?v=22";
 import { languageColor } from "./map-palette.mjs";
-import { contrastBasisClass, contrastSymbol } from "./typology-map.mjs?v=21";
+import { contrastBasisClass, contrastSymbol } from "./typology-map.mjs?v=22";
 import { linkedWordSets, orderLinkedGroups } from "./linked-word-sets.mjs?v=19";
 import { renderEvidenceCard } from "./evidence-cards.mjs";
 
@@ -17,7 +17,7 @@ const state = { catalog: [], basemap: null, loaded: null, loadedSet: null, loade
   comparisonLoaded: null, comparisonSet: null, loadRequest: 0, compareRequest: 0, liveMapFailed: false, lastResult: null,
   uploadTarget: null, sessionUploads: new Map(), includedCache: new Map(), localityEntries: [],
   detailActive: false, durationEntryId: null, gammModels: null, physicalGammModels: null, activeDialectId: null,
-  linkedLoaded: null, linkedRequest: 0, workspaceKind: null };
+  linkedLoaded: null, linkedRequest: 0, workspaceKind: null, boundaries: null };
 const gammSetKeys = { "leer-f0": "leer", "aachen-f0": "aachen" };
 const element = (tag, className = "", content = "") => {
   const node = document.createElement(tag);
@@ -29,6 +29,8 @@ const format = value => Number(value).toLocaleString(undefined, { maximumFractio
 const findSet = id => state.catalog.flatMap(dialect => dialect.measurementSets.map(set => ({ dialect, set }))).find(item => item.set.id === id);
 const findDialect = id => state.catalog.find(dialect => dialect.id === id);
 const activeDialect = () => findDialect(state.activeDialectId);
+const mapCatalog = () => state.catalog.filter(dialect => $("literature-layer").checked
+  || dialect.measurementSets.some(set => set.dataFile));
 const orderedSets = dialect => [...dialect.measurementSets].sort((a, b) =>
   Number(b.kind === dialect.typology?.preferredMeasurement) - Number(a.kind === dialect.typology?.preferredMeasurement));
 const visibleLocalityEntries = () => state.localityEntries.filter(entry =>
@@ -177,7 +179,7 @@ function filteredCatalog() {
   const family = $("family-filter").value;
   const contrast = $("contrast-filter").value;
   const place = $("place-filter").value;
-  return state.catalog.filter(dialect => {
+  return mapCatalog().filter(dialect => {
     const searchable = [dialect.title, dialect.family, dialect.place, dialect.summary,
       dialect.typology?.contrast, dialect.typology?.accentPattern, dialect.typology?.quantityPattern,
       ...dialect.measurementSets.flatMap(set => [set.title, set.summary, ...set.variables])].join(" ").toLowerCase();
@@ -186,7 +188,7 @@ function filteredCatalog() {
   });
 }
 function placesForFamily(family, contrast = $("contrast-filter").value) {
-  return [...new Set(state.catalog.filter(dialect => (!family || dialect.family === family)
+  return [...new Set(mapCatalog().filter(dialect => (!family || dialect.family === family)
     && (!contrast || dialect.typology?.profile === contrast))
     .map(dialect => dialect.place).filter(Boolean))].sort();
 }
@@ -206,6 +208,8 @@ function updatePlaceOptions() {
 function renderCatalog() {
   const filtered = filteredCatalog();
   const mapContainer = $("atlas-map");
+  const entries = mapCatalog();
+  const boundaries = $("boundary-layer").checked ? state.boundaries : null;
   const visibleIds = new Set(filtered.map(dialect => dialect.id));
   const onMapSelect = dialect => {
     if (!filtered.some(item => item.id === dialect.id)) {
@@ -225,28 +229,30 @@ function renderCatalog() {
         mapContainer.removeAttribute("tabindex");
         mapContainer.classList.add("leaflet-host");
       }
-      renderLiveAtlasMap(mapContainer, state.catalog, visibleIds, onMapSelect, () => {
+      renderLiveAtlasMap(mapContainer, entries, visibleIds, onMapSelect, () => {
         state.liveMapFailed = true;
         destroyLiveAtlasMap(mapContainer);
         mapContainer.classList.remove("leaflet-host");
         renderCatalog();
-      });
+      }, boundaries);
       $("map-mode").textContent = "Live street map: drag, scroll or pinch to explore.";
     } catch {
       state.liveMapFailed = true;
       destroyLiveAtlasMap(mapContainer);
       mapContainer.classList.remove("leaflet-host");
-      renderAtlasMap(mapContainer, state.catalog, visibleIds, state.basemap, onMapSelect);
+      renderAtlasMap(mapContainer, entries, visibleIds, state.basemap, onMapSelect, boundaries);
       $("map-mode").textContent = "Online street map unavailable; showing the offline outline.";
     }
   } else {
-    renderAtlasMap(mapContainer, state.catalog, visibleIds, state.basemap, onMapSelect);
+    renderAtlasMap(mapContainer, entries, visibleIds, state.basemap, onMapSelect, boundaries);
     $("map-mode").textContent = "Online street map unavailable; showing the offline outline.";
   }
   const mappedAreas = state.catalog.filter(dialect => dialect.map.distributionGeometry && dialect.map.distributionSource).length;
   $("distribution-note").textContent = mappedAreas
     ? `${mappedAreas} evidence-backed dialect area ${mappedAreas === 1 ? "layer is" : "layers are"} shown.`
-    : "No dialect-area boundaries are inferred.";
+    : boundaries?.features?.length
+      ? "Dashed line: approximate trace of the published tonal isogloss; the southern extent is cropped in the source figure."
+      : "Town labels show cited descriptions; unlabelled areas remain unclassified.";
   const typologyList = $("map-typology");
   typologyList.replaceChildren();
   filtered.forEach(dialect => {
@@ -258,8 +264,8 @@ function renderCatalog() {
     symbol.setAttribute("aria-hidden", "true");
     const content = element("span", "typology-card-copy");
     content.append(element("strong", "", dialect.title), element("span", "", dialect.typology?.contrast || "Present-day type unclassified"));
-    content.append(element("span", "typology-card-evidence", dialect.measurementSets.length
-      ? "Atlas measurements · View profile" : "Literature · View pattern and source"));
+    content.append(element("span", "typology-card-evidence", `${dialect.language || dialect.family} · ${dialect.measurementSets.length
+      ? "Atlas data" : "Literature"}`));
     card.append(symbol, content);
     card.addEventListener("click", () => showDialect(dialect));
     typologyList.append(card);
@@ -274,11 +280,11 @@ function renderPatternDescription(container, dialect) {
   container.append(element("h3", "", "Published accent pattern"));
   const wrap = element("div", "table-wrap");
   const table = element("table", "pattern-table");
-  const caption = element("caption", "", "Focused, non-final position · historically corresponding word classes");
+  const caption = element("caption", "", typology.patternContext || "Focused, non-final position · historically corresponding word classes");
   table.append(caption);
   const head = element("thead");
   const headings = element("tr");
-  ["Sentence type", "Class 1", "Class 2"].forEach(label => {
+  ["Context", ...(typology.patternClassLabels || ["Class 1", "Class 2"])].forEach(label => {
     const cell = element("th", "", label); cell.scope = "col"; headings.append(cell);
   });
   head.append(headings);
@@ -311,7 +317,8 @@ function showDialect(dialect) {
   $("dialog-summary").textContent = dialect.summary;
   renderPatternDescription($("dialog-pattern"), dialect);
   const fields = [
-    ["Variety", dialect.title], ["Location", `${dialect.place}. ${dialect.placeNote}`],
+    ["Variety", dialect.title], ["Language group", dialect.language || dialect.family],
+    ["Location", `${dialect.place}. ${dialect.placeNote}`],
     ["Map position", `${dialect.map.precision}; source: ${dialect.map.source}. ${dialect.map.distributionGeometry && dialect.map.distributionSource ? `Dialect-area source: ${dialect.map.distributionSource}.` : "No verified dialect-area boundary."}`],
     ["Accent status", dialect.typology?.accentStatus || "Not established"],
     ["Accent pattern", dialect.typology?.accentPattern || "Not established"],
@@ -1608,15 +1615,20 @@ function registerWebMcp() {
 
 async function init() {
   try {
-    const [response, basemapResponse, gammResponse, physicalGammResponse] = await Promise.all([
+    const [response, basemapResponse, gammResponse, physicalGammResponse, boundaryResponse] = await Promise.all([
       fetch("./catalog.json", { cache: "no-store" }),
       fetch("./atlas-basemap.geojson", { cache: "no-store" }).catch(() => null),
       fetch("./data/gamm-population.json", { cache: "no-store" }).catch(() => null),
-      fetch("./data/gamm-physical-time.json", { cache: "no-store" }).catch(() => null)
+      fetch("./data/gamm-physical-time.json", { cache: "no-store" }).catch(() => null),
+      fetch("./tonal-isogloss.geojson", { cache: "no-store" }).catch(() => null)
     ]);
     if (!response.ok) throw new Error(`Catalog request failed (${response.status}).`);
     state.catalog = await response.json();
     if (basemapResponse?.ok) state.basemap = await basemapResponse.json();
+    if (boundaryResponse?.ok) {
+      try { state.boundaries = await boundaryResponse.json(); } catch { state.boundaries = null; }
+    }
+    $("boundary-layer-wrap").hidden = !state.boundaries?.features?.length;
     if (gammResponse?.ok) {
       try { state.gammModels = (await gammResponse.json()).models; }
       catch { state.gammModels = null; }
@@ -1663,6 +1675,8 @@ async function init() {
   $("search").addEventListener("input", renderCatalog);
   $("family-filter").addEventListener("change", () => { updatePlaceOptions(); renderCatalog(); });
   $("contrast-filter").addEventListener("change", () => { updatePlaceOptions(); renderCatalog(); });
+  $("literature-layer").addEventListener("change", () => { updatePlaceOptions(); renderCatalog(); });
+  $("boundary-layer").addEventListener("change", renderCatalog);
   $("place-filter").addEventListener("change", renderCatalog);
   $("analysis-mode").addEventListener("change", () => { $("file-input").value = ""; updateMode(); });
   $("file-input").addEventListener("change", onFileChange);

@@ -84,7 +84,9 @@
       "accentStatus": "No consistent tonal opposition demonstrated in the published production study.",
       "accentPattern": "F0 varies across speakers and word pairs; a stable accent pattern is not established in the cited study.",
       "quantityPattern": "Short, long and overlong vowels are described in the literature. This atlas samples long vs overlong."
-    }
+    },
+    "town": "Leer",
+    "language": "East Frisian Low German"
   },
   {
     "id": "aachen-franconian",
@@ -147,7 +149,9 @@
       "accentStatus": "Historically described Accent 1/2 classes; the current tonal contrast is under study.",
       "accentPattern": "The atlas provides four separate recorded contexts. No stable present-day accent pattern is assigned here; a conference report suggests tonal neutralization.",
       "quantityPattern": "Measured vowel durations are available for the same F0 tokens. Their relationship to historical accent classes is under study."
-    }
+    },
+    "town": "Aachen",
+    "language": "Franconian"
   },
   {
     "id": "baden-low-german",
@@ -252,7 +256,9 @@
       "accentStatus": "Not established for the current sample. Duration-only data do not demonstrate the absence of accent.",
       "accentPattern": "No F0 measurements or verified contemporary accent pattern are included.",
       "quantityPattern": "Three phonetic vowel lengths were reported historically. The current workbook records lexical duration pairs without verified quantity-class labels."
-    }
+    },
+    "town": "Baden (Achim)",
+    "language": "Low German"
   },
   {
     "id": "cologne-franconian",
@@ -356,7 +362,9 @@
         }
       ],
       "patternNote": "Descriptions concern focused, non-final syllables, not every prosodic context. Class 1/2 follows historical word correspondences in Köhnlein (2013); traditional accent numbering differs in Rule B sources. These descriptions are not measured atlas curves."
-    }
+    },
+    "town": "Cologne",
+    "language": "Ripuarian · Central Franconian"
   },
   {
     "id": "arzbach-franconian",
@@ -407,7 +415,9 @@
           "url": "https://u.osu.edu/koehnlein.3/files/2015/10/Koehnlein_Lingua_final-2kj4gvy.pdf"
         }
       ]
-    }
+    },
+    "town": "Arzbach",
+    "language": "Moselle Franconian"
   },
   {
     "id": "hasselt-limburgish",
@@ -458,7 +468,9 @@
           "url": "https://u.osu.edu/koehnlein.3/files/2015/10/Koehnlein_Lingua_final-2kj4gvy.pdf"
         }
       ]
-    }
+    },
+    "town": "Hasselt",
+    "language": "West Limburgish · Low Franconian"
   },
   {
     "id": "weert-limburgish",
@@ -498,6 +510,339 @@
         {
           "label": "Gussenhoven & Peters (2019), §3.2.1",
           "url": "https://www.cambridge.org/core/journals/phonology/article/franconian-tones-fare-better-as-tones-than-as-feet-a-reply-to-kohnlein-2016/76ADA3C5BF45D85B5C112ABCDA846950"
+        }
+      ]
+    },
+    "town": "Weert",
+    "language": "Central Limburgish · Low Franconian"
+  },
+  {
+    "id": "roermond-limburgish",
+    "title": "Roermond Limburgish",
+    "town": "Roermond",
+    "language": "East Limburgish · Low Franconian",
+    "family": "Franconian",
+    "place": "Roermond, Netherlands",
+    "placeNote": "Published place description; town anchor only, not a speaker location or surveyed dialect boundary.",
+    "map": {
+      "latitude": 51.19417,
+      "longitude": 5.9875,
+      "precision": "approximate town anchor",
+      "source": "https://www.geonames.org/2748000/roermond.html",
+      "distributionGeometry": null
+    },
+    "speakerCount": null,
+    "summary": "The reported contrast changes with finality: declarative focal non-final syllables contrast falling and high pitch; final syllables contrast falling and falling–rising pitch.",
+    "recordings": "No recordings from this place are included in the atlas.",
+    "access": "Literature description only; no atlas token measurements or fitted models.",
+    "measurementSets": [],
+    "typology": {
+      "kind": "accent",
+      "profile": "accent",
+      "classificationSource": "literature",
+      "preferredMeasurement": "f0",
+      "contrast": "Tonal accent · fall vs high",
+      "accentStatus": "Tonal accent reported in the cited study. Present-day status is not independently tested by this atlas.",
+      "accentPattern": "The reported contrast changes with finality: declarative focal non-final syllables contrast falling and high pitch; final syllables contrast falling and falling–rising pitch.",
+      "quantityPattern": "Vowel quantity is not classified separately in this literature entry.",
+      "patternContext": "Declarative · focused · position shown per row",
+      "patternClassLabels": [
+        "Accent 1",
+        "Accent 2"
+      ],
+      "patternRows": [
+        {
+          "context": "Non-final",
+          "class1": "Falling",
+          "class2": "High / slightly rising"
+        },
+        {
+          "context": "Final",
+          "class1": "Falling",
+          "class2": "Falling–rising"
+        }
+      ],
+      "patternNote": "Local accent numbering follows the cited study. Patterns concern only the contexts shown; these descriptions are not measured atlas curves or verified word correspondences between towns.",
+      "basis": "Gussenhoven & Peters (2008), §3.2 and §4.1.1, pp. 96–102.",
+      "atlasEvidence": "No measurements from this place are included in the atlas.",
+      "caveat": "The map label follows the published description and its source date; it does not classify every speaker or every context.",
+      "sources": [
+        {
+          "label": "Gussenhoven & Peters (2008), §3.2, Figs. 2–3",
+          "url": "https://www.dbnl.org/tekst/_ned020200801_01/_ned020200801_01_0005.php"
+        }
+      ]
+    }
+  },
+  {
+    "id": "venlo-limburgish",
+    "title": "Venlo Limburgish",
+    "town": "Venlo",
+    "language": "East Limburgish · Low Franconian",
+    "family": "Franconian",
+    "place": "Venlo, Netherlands",
+    "placeNote": "Published place description; town anchor only, not a speaker location or surveyed dialect boundary.",
+    "map": {
+      "latitude": 51.37,
+      "longitude": 6.16806,
+      "precision": "approximate town anchor",
+      "source": "https://www.geonames.org/2745641/venlo.html",
+      "distributionGeometry": null
+    },
+    "speakerCount": null,
+    "summary": "Focused non-final declaratives contrast a sharp fall with approximately sustained pitch. The reported Accent-2 direction varies between speakers.",
+    "recordings": "No recordings from this place are included in the atlas.",
+    "access": "Literature description only; no atlas token measurements or fitted models.",
+    "measurementSets": [],
+    "typology": {
+      "kind": "accent",
+      "profile": "accent",
+      "classificationSource": "literature",
+      "preferredMeasurement": "f0",
+      "contrast": "Tonal accent · early fall vs sustained pitch",
+      "accentStatus": "Tonal accent reported in the cited study. Present-day status is not independently tested by this atlas.",
+      "accentPattern": "Focused non-final declaratives contrast a sharp fall with approximately sustained pitch. The reported Accent-2 direction varies between speakers.",
+      "quantityPattern": "Vowel quantity is not classified separately in this literature entry.",
+      "patternContext": "Declarative · focused · non-final",
+      "patternClassLabels": [
+        "Accent 1",
+        "Accent 2"
+      ],
+      "patternRows": [
+        {
+          "context": "Non-final",
+          "class1": "Sharp fall",
+          "class2": "Approximately level; speaker variation"
+        }
+      ],
+      "patternNote": "Local accent numbering follows the cited study. Patterns concern only the contexts shown; these descriptions are not measured atlas curves or verified word correspondences between towns.",
+      "basis": "Fournier & Gussenhoven (2012), §2.3.1, pp. 62–64, Fig. 1.",
+      "atlasEvidence": "No measurements from this place are included in the atlas.",
+      "caveat": "The map label follows the published description and its source date; it does not classify every speaker or every context.",
+      "sources": [
+        {
+          "label": "Fournier & Gussenhoven (2012), §2.3.1",
+          "url": "https://doi.org/10.35520/diadorim.2012.v12n0a3972"
+        },
+        {
+          "label": "Author full text",
+          "url": "https://www.researchgate.net/publication/334660249_Measuring_phonetic_salience_and_perceptual_distinctiveness_the_lexical_tone_contrast_of_Venlo_Dutch"
+        }
+      ]
+    }
+  },
+  {
+    "id": "maastricht-limburgish",
+    "title": "Maastricht Limburgish",
+    "town": "Maastricht",
+    "language": "Central Limburgish · Low Franconian",
+    "family": "Franconian",
+    "place": "Maastricht, Netherlands",
+    "placeNote": "Published place description; town anchor only, not a speaker location or surveyed dialect boundary.",
+    "map": {
+      "latitude": 50.84833,
+      "longitude": 5.68889,
+      "precision": "approximate town anchor",
+      "source": "https://www.geonames.org/2751283/maastricht.html",
+      "distributionGeometry": null
+    },
+    "speakerCount": null,
+    "summary": "The 1999 citation/focused-final description contrasts a steep fall with mid level or weakly rising pitch, sometimes followed by a final fall.",
+    "recordings": "No recordings from this place are included in the atlas.",
+    "access": "Literature description only; no atlas token measurements or fitted models.",
+    "measurementSets": [],
+    "typology": {
+      "kind": "accent",
+      "profile": "accent",
+      "classificationSource": "literature",
+      "preferredMeasurement": "f0",
+      "contrast": "Tonal accent · context-dependent pitch and duration",
+      "accentStatus": "Tonal accent reported in the cited study. Present-day status is not independently tested by this atlas.",
+      "accentPattern": "The 1999 citation/focused-final description contrasts a steep fall with mid level or weakly rising pitch, sometimes followed by a final fall.",
+      "quantityPattern": "Vowel quantity is not classified separately in this literature entry.",
+      "patternContext": "Citation / focused final · 1999 description",
+      "patternClassLabels": [
+        "Accent 1",
+        "Accent 2"
+      ],
+      "patternRows": [
+        {
+          "context": "Citation / final",
+          "class1": "Steep fall",
+          "class2": "Mid level / weak rise; optional final fall"
+        }
+      ],
+      "patternNote": "Local accent numbering follows the cited study. Patterns concern only the contexts shown; these descriptions are not measured atlas curves or verified word correspondences between towns.",
+      "basis": "Gussenhoven & Aarts (1999), Intonation, pp. 160–164, especially p. 162, Fig. 1.",
+      "atlasEvidence": "No measurements from this place are included in the atlas.",
+      "caveat": "The map label follows the published description and its source date; it does not classify every speaker or every context.",
+      "sources": [
+        {
+          "label": "Gussenhoven & Aarts (1999), pp. 160–164",
+          "url": "https://www.researchgate.net/publication/231997113_The_dialect_of_Maastricht"
+        }
+      ]
+    }
+  },
+  {
+    "id": "borgloon-limburgish",
+    "title": "Borgloon Limburgish",
+    "town": "Borgloon",
+    "language": "West Limburgish · Low Franconian",
+    "family": "Franconian",
+    "place": "Borgloon, Belgium",
+    "placeNote": "Published place description; town anchor only, not a speaker location or surveyed dialect boundary.",
+    "map": {
+      "latitude": 50.80505,
+      "longitude": 5.34366,
+      "precision": "approximate town anchor",
+      "source": "https://www.geonames.org/2801467/borgloon.html",
+      "distributionGeometry": null
+    },
+    "speakerCount": null,
+    "summary": "Published descriptions report a delayed rising Accent-2 pattern, with contour variants. The declarative non-final comparison distinguishes earlier and later pitch peaks.",
+    "recordings": "No recordings from this place are included in the atlas.",
+    "access": "Literature description only; no atlas token measurements or fitted models.",
+    "measurementSets": [],
+    "typology": {
+      "kind": "accent",
+      "profile": "accent",
+      "classificationSource": "literature",
+      "preferredMeasurement": "f0",
+      "contrast": "Tonal accent · delayed rising pattern",
+      "accentStatus": "Tonal accent reported in the cited study. Present-day status is not independently tested by this atlas.",
+      "accentPattern": "Published descriptions report a delayed rising Accent-2 pattern, with contour variants. The declarative non-final comparison distinguishes earlier and later pitch peaks.",
+      "quantityPattern": "Vowel quantity is not classified separately in this literature entry.",
+      "patternContext": "Declarative · focused · non-final",
+      "patternClassLabels": [
+        "Accent 1",
+        "Accent 2"
+      ],
+      "patternRows": [
+        {
+          "context": "Non-final",
+          "class1": "Earlier pitch peak",
+          "class2": "Delayed rising peak; variants"
+        }
+      ],
+      "patternNote": "Local accent numbering follows the cited study. Patterns concern only the contexts shown; these descriptions are not measured atlas curves or verified word correspondences between towns.",
+      "basis": "Peters (2007), §3.3–4; Gussenhoven & Peters (2008), §4.1.1, Fig. 2.",
+      "atlasEvidence": "No measurements from this place are included in the atlas.",
+      "caveat": "The map label follows the published description and its source date; it does not classify every speaker or every context.",
+      "sources": [
+        {
+          "label": "Peters (2007), §3.3–4",
+          "url": "https://www.researchgate.net/publication/254885285_A_bitonal_lexical_pitch_accent_in_the_Limburgian_dialect_of_Borgloon"
+        },
+        {
+          "label": "Gussenhoven & Peters (2008), §4.1.1",
+          "url": "https://www.dbnl.org/tekst/_ned020200801_01/_ned020200801_01_0005.php"
+        }
+      ]
+    }
+  },
+  {
+    "id": "neerpelt-limburgish",
+    "title": "Neerpelt Limburgish",
+    "town": "Neerpelt",
+    "language": "Limburgish · Low Franconian",
+    "family": "Franconian",
+    "place": "Neerpelt, Belgium",
+    "placeNote": "Published place description; town anchor only, not a speaker location or surveyed dialect boundary.",
+    "map": {
+      "latitude": 51.22807,
+      "longitude": 5.4427,
+      "precision": "approximate town anchor",
+      "source": "https://www.geonames.org/2790357/neerpelt.html",
+      "distributionGeometry": null
+    },
+    "speakerCount": null,
+    "summary": "In declarative focal non-final speech, Accent 1 reaches low pitch after the nucleus; Accent 2 remains high until the next stress. The contrast includes following syllables.",
+    "recordings": "No recordings from this place are included in the atlas.",
+    "access": "Literature description only; no atlas token measurements or fitted models.",
+    "measurementSets": [],
+    "typology": {
+      "kind": "accent",
+      "profile": "accent",
+      "classificationSource": "literature",
+      "preferredMeasurement": "f0",
+      "contrast": "Tonal accent · high pitch into following syllables",
+      "accentStatus": "Tonal accent reported in the cited study. Present-day status is not independently tested by this atlas.",
+      "accentPattern": "In declarative focal non-final speech, Accent 1 reaches low pitch after the nucleus; Accent 2 remains high until the next stress. The contrast includes following syllables.",
+      "quantityPattern": "Vowel quantity is not classified separately in this literature entry.",
+      "patternContext": "Declarative · focused · non-final · includes following syllables",
+      "patternClassLabels": [
+        "Accent 1",
+        "Accent 2"
+      ],
+      "patternRows": [
+        {
+          "context": "Non-final",
+          "class1": "Low after nucleus",
+          "class2": "High until next stress"
+        }
+      ],
+      "patternNote": "Local accent numbering follows the cited study. Patterns concern only the contexts shown; these descriptions are not measured atlas curves or verified word correspondences between towns.",
+      "basis": "Peters (2007), ICPhS, §3.1, p. 1267, Fig. 2; §4, p. 1268.",
+      "atlasEvidence": "No measurements from this place are included in the atlas.",
+      "caveat": "The map label follows the published description and its source date; it does not classify every speaker or every context.",
+      "sources": [
+        {
+          "label": "Peters (2007), ICPhS, pp. 1265–1268",
+          "url": "https://www.researchgate.net/publication/239918595_Tone_and_quantity_in_the_Limburgian_dialect_of_Neerpelt"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hamont-limburgish",
+    "title": "Hamont Limburgish",
+    "town": "Hamont",
+    "language": "West Limburgish / Dommellands · Low Franconian",
+    "family": "Franconian",
+    "place": "Hamont, Belgium",
+    "placeNote": "Published place description; town anchor only, not a speaker location or surveyed dialect boundary.",
+    "map": {
+      "latitude": 51.25332,
+      "longitude": 5.54732,
+      "precision": "approximate town anchor",
+      "source": "https://www.geonames.org/2796625/hamont.html",
+      "distributionGeometry": null
+    },
+    "speakerCount": null,
+    "summary": "The reported declarative focal-final contrast is falling versus falling–rising. The contrast can neutralize in non-final postnuclear contexts.",
+    "recordings": "No recordings from this place are included in the atlas.",
+    "access": "Literature description only; no atlas token measurements or fitted models.",
+    "measurementSets": [],
+    "typology": {
+      "kind": "accent",
+      "profile": "accent",
+      "classificationSource": "literature",
+      "preferredMeasurement": "f0",
+      "contrast": "Tonal accent · fall vs fall–rise",
+      "accentStatus": "Tonal accent reported in the cited study. Present-day status is not independently tested by this atlas.",
+      "accentPattern": "The reported declarative focal-final contrast is falling versus falling–rising. The contrast can neutralize in non-final postnuclear contexts.",
+      "quantityPattern": "Vowel quantity is not classified separately in this literature entry.",
+      "patternContext": "Declarative · focused · final",
+      "patternClassLabels": [
+        "Accent 1",
+        "Accent 2"
+      ],
+      "patternRows": [
+        {
+          "context": "Final",
+          "class1": "Falling",
+          "class2": "Falling–rising"
+        }
+      ],
+      "patternNote": "Local accent numbering follows the cited study. Patterns concern only the contexts shown; these descriptions are not measured atlas curves or verified word correspondences between towns.",
+      "basis": "Verhoeven (2006), §3–4, pp. 240–245, Fig. 4.",
+      "atlasEvidence": "No measurements from this place are included in the atlas.",
+      "caveat": "The map label follows the published description and its source date; it does not classify every speaker or every context.",
+      "sources": [
+        {
+          "label": "Verhoeven (2006), §3–4, Fig. 4",
+          "url": "https://www.dbnl.org/tekst/_taa007200601_01/_taa007200601_01_0016.php"
         }
       ]
     }

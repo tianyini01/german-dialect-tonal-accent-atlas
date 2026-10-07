@@ -1,5 +1,6 @@
 import { languageColor } from "./map-palette.mjs";
-import { contrastBasisClass, contrastSymbol } from "./typology-map.mjs?v=21";
+import { contrastBasisClass, contrastSymbol } from "./typology-map.mjs?v=22";
+import { boundaryColor, publishedBoundaries } from "./boundary-map.mjs?v=22";
 
 const maps = new WeakMap();
 const TILE_URL = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -17,13 +18,21 @@ function coordinates(entry) {
 }
 
 function markerIcon(entry) {
-  // Only the fixed symbols returned by contrastSymbol enter the icon markup.
   const symbol = contrastSymbol(entry);
   const color = languageColor(entry.family);
   const basis = contrastBasisClass(entry);
+  const icon = document.createElement("div");
+  const pin = document.createElement("span");
+  pin.className = "atlas-pin";
+  pin.style.setProperty("--marker-color", color);
+  pin.textContent = symbol;
+  const label = document.createElement("span");
+  label.className = "atlas-town-label";
+  label.textContent = entry.town || entry.title;
+  icon.append(pin, label);
   return window.L.divIcon({
     className: `atlas-pin-host ${basis}`,
-    html: `<span class="atlas-pin" style="--marker-color:${color}">${symbol}</span>`,
+    html: icon,
     iconSize: [30, 30],
     iconAnchor: [15, 15],
     tooltipAnchor: [0, -15]
@@ -185,7 +194,7 @@ function initialView(map, entries) {
   }
 }
 
-export function renderLiveAtlasMap(container, entries, visibleIds, onSelect, onUnavailable) {
+export function renderLiveAtlasMap(container, entries, visibleIds, onSelect, onUnavailable, boundaries = null) {
   if (!container) throw new TypeError("A map container is required.");
   if (!window.L) throw new Error("Leaflet must be loaded before the live atlas map.");
   const catalog = Array.isArray(entries) ? entries : [];
@@ -218,6 +227,14 @@ export function renderLiveAtlasMap(container, entries, visibleIds, onSelect, onU
       destroyed: false
     };
     maps.set(container, state);
+    const showTownLabels = () => container.classList.toggle("show-town-labels", map.getZoom() >= 10);
+    map.on("zoomend", showTownLabels);
+    map.on("zoomend", () => {
+      if (!state.boundaryLayer) return;
+      if (map.getZoom() >= 10) state.boundaryLayer.remove();
+      else if (!map.hasLayer(state.boundaryLayer)) state.boundaryLayer.addTo(map);
+    });
+    showTownLabels();
 
     const tiles = window.L.tileLayer(TILE_URL, {
       attribution: TILE_ATTRIBUTION,
@@ -252,6 +269,25 @@ export function renderLiveAtlasMap(container, entries, visibleIds, onSelect, onU
   }
 
   syncAreas(state, catalog, visibleIds);
+  state.boundaryLayer?.remove();
+  state.boundaryLayer = null;
+  const features = publishedBoundaries(boundaries);
+  if (features.length) state.boundaryLayer = window.L.geoJSON({ type: "FeatureCollection", features }, {
+    style: { color: boundaryColor, weight: 2.5, dashArray: "7 6", opacity: .9, fill: false },
+    onEachFeature(feature, line) {
+      const content = document.createElement("div");
+      const title = document.createElement("strong"); title.textContent = feature.properties.name;
+      const description = document.createElement("p"); description.textContent = feature.properties.description;
+      content.append(title, description);
+      if (/^https:\/\//.test(feature.properties.source)) {
+        const source = document.createElement("a"); source.href = feature.properties.source;
+        source.textContent = feature.properties.citation; source.target = "_blank"; source.rel = "noopener noreferrer";
+        content.append(source);
+      }
+      line.bindPopup(content);
+    }
+  }).addTo(state.map);
+  if (state.map.getZoom() >= 10) state.boundaryLayer?.remove();
   syncMarkers(state, catalog, visibleIds);
   scheduleResize(state);
   return state.map;

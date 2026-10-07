@@ -1,0 +1,1369 @@
+{
+  "schema": "tonal-isogloss-research-proposal-v1",
+  "status": "approximate schematic only; not precision GIS",
+  "source": {
+    "citation": "Gussenhoven, Carlos & Jörg Peters (2019). Franconian tones fare better as tones than as feet. Phonology 36, 497–530.",
+    "doi": "https://doi.org/10.1017/S095267571900023X",
+    "figure": "Figure 1",
+    "printed_page": 498,
+    "figure_basis": "Goossens (1965: map 2), as stated in the figure caption",
+    "image_file": "gussenhoven-peters-2019-figure1.jpg",
+    "image_sha256": "dae2df9c6872dcbde124058d87e7a416034fbd7bcffbde8232943bc8f053e48b",
+    "image_dimensions_px": [
+      1400,
+      1324
+    ],
+    "map_frame_px": [
+      67,
+      1,
+      1370,
+      1119
+    ],
+    "image_pixel_origin": "top left; x rightwards, y downwards",
+    "article_license": "CC BY 4.0",
+    "retraced_feature": "black dotted line labelled tonal isogloss"
+  },
+  "georeferencing": {
+    "method": "unweighted ordinary least squares global affine: [x,y,1] @ coefficients -> [longitude,latitude]",
+    "output_coordinate_reference_system": "WGS84 geographic longitude/latitude; the original diagram has no declared CRS",
+    "coefficients_rows_x_y_intercept_columns_lon_lat": [
+      [
+        0.0026702125348351136,
+        4.4597874816846046e-05
+      ],
+      [
+        0.00010609060181156725,
+        -0.0017767555336304641
+      ],
+      [
+        4.45436518067444,
+        51.653893010210496
+      ]
+    ],
+    "anchor_count": 11,
+    "quality_decision": "supported as a regional schematic overlay only; not suitable for exact local boundaries or town classification",
+    "source_pixel_sampling_note": "Printed town-circle centres are manually read to within several source-image pixels. The isogloss is manually sampled and simplified between vertices.",
+    "anchor_fit_rmse_m": 3456.2,
+    "anchor_fit_max_residual_m": 6842.6,
+    "leave_one_anchor_out_rmse_m": 4499.6,
+    "leave_one_anchor_out_max_residual_m": 8247.3,
+    "residual_interpretation": "These measure alignment of printed town circles only. They do not estimate the source isogloss's true accuracy, date-specific validity, or local boundary uncertainty.",
+    "piecewise_warping": false,
+    "anchors": [
+      {
+        "town": "Cologne",
+        "geonames_id": 2886242,
+        "source_pixel_xy": [
+          922,
+          434
+        ],
+        "source_wgs84_lon_lat": [
+          6.95,
+          50.93333
+        ],
+        "geographic_source": "https://sws.geonames.org/2886242/about.rdf",
+        "fitted_wgs84_lon_lat": [
+          6.9623445,
+          50.9239003
+        ],
+        "fit_residual_m": 1359.4,
+        "leave_one_out_residual_m": 1845.4
+      },
+      {
+        "town": "Arzbach",
+        "geonames_id": 2955376,
+        "source_pixel_xy": [
+          1206,
+          735
+        ],
+        "source_wgs84_lon_lat": [
+          7.74948,
+          50.37902
+        ],
+        "geographic_source": "https://sws.geonames.org/2955376/about.rdf",
+        "fitted_wgs84_lon_lat": [
+          7.7526181,
+          50.4017627
+        ],
+        "fit_residual_m": 2538.6,
+        "leave_one_out_residual_m": 4397.3
+      },
+      {
+        "town": "Hasselt",
+        "geonames_id": 2796491,
+        "source_pixel_xy": [
+          310,
+          431
+        ],
+        "source_wgs84_lon_lat": [
+          5.33781,
+          50.93106
+        ],
+        "geographic_source": "https://sws.geonames.org/2796491/about.rdf",
+        "fitted_wgs84_lon_lat": [
+          5.3278561,
+          50.9019367
+        ],
+        "fit_residual_m": 3312.7,
+        "leave_one_out_residual_m": 4435.3
+      },
+      {
+        "town": "Weert",
+        "geonames_id": 2744911,
+        "source_pixel_xy": [
+          462,
+          236
+        ],
+        "source_wgs84_lon_lat": [
+          5.70694,
+          51.25167
+        ],
+        "geographic_source": "https://sws.geonames.org/2744911/about.rdf",
+        "fitted_wgs84_lon_lat": [
+          5.7130408,
+          51.2551829
+        ],
+        "fit_residual_m": 576.9,
+        "leave_one_out_residual_m": 697.2
+      },
+      {
+        "town": "Roermond",
+        "geonames_id": 2748000,
+        "source_pixel_xy": [
+          563,
+          253
+        ],
+        "source_wgs84_lon_lat": [
+          5.9875,
+          51.19417
+        ],
+        "geographic_source": "https://sws.geonames.org/2748000/about.rdf",
+        "fitted_wgs84_lon_lat": [
+          5.9845358,
+          51.2294825
+        ],
+        "fit_residual_m": 3932.0,
+        "leave_one_out_residual_m": 4759.0
+      },
+      {
+        "town": "Borgloon",
+        "geonames_id": 2801467,
+        "source_pixel_xy": [
+          306,
+          468
+        ],
+        "source_wgs84_lon_lat": [
+          5.34366,
+          50.80505
+        ],
+        "geographic_source": "https://sws.geonames.org/2801467/about.rdf",
+        "fitted_wgs84_lon_lat": [
+          5.3211006,
+          50.8360184
+        ],
+        "fit_residual_m": 3790.7,
+        "leave_one_out_residual_m": 5296.9
+      },
+      {
+        "town": "Neerpelt",
+        "geonames_id": 2790357,
+        "source_pixel_xy": [
+          389,
+          270
+        ],
+        "source_wgs84_lon_lat": [
+          5.4427,
+          51.22807
+        ],
+        "geographic_source": "https://sws.geonames.org/2790357/about.rdf",
+        "fitted_wgs84_lon_lat": [
+          5.5217223,
+          51.1915176
+        ],
+        "fit_residual_m": 6842.6,
+        "leave_one_out_residual_m": 8247.3
+      },
+      {
+        "town": "Maastricht",
+        "geonames_id": 2751283,
+        "source_pixel_xy": [
+          440,
+          450
+        ],
+        "source_wgs84_lon_lat": [
+          5.68889,
+          50.84833
+        ],
+        "geographic_source": "https://sws.geonames.org/2751283/about.rdf",
+        "fitted_wgs84_lon_lat": [
+          5.6769995,
+          50.8739761
+        ],
+        "fit_residual_m": 2971.3,
+        "leave_one_out_residual_m": 3503.6
+      },
+      {
+        "town": "Venlo",
+        "geonames_id": 2745641,
+        "source_pixel_xy": [
+          614,
+          183
+        ],
+        "source_wgs84_lon_lat": [
+          6.16806,
+          51.37
+        ],
+        "geographic_source": "https://sws.geonames.org/2745641/about.rdf",
+        "fitted_wgs84_lon_lat": [
+          6.1132903,
+          51.3561298
+        ],
+        "fit_residual_m": 4103.4,
+        "leave_one_out_residual_m": 5635.7
+      },
+      {
+        "town": "Mayen",
+        "geonames_id": 2872649,
+        "source_pixel_xy": [
+          1007,
+          787
+        ],
+        "source_wgs84_lon_lat": [
+          7.22277,
+          50.32797
+        ],
+        "geographic_source": "https://sws.geonames.org/2872649/about.rdf",
+        "fitted_wgs84_lon_lat": [
+          7.2267625,
+          50.3004965
+        ],
+        "fit_residual_m": 3068.0,
+        "leave_one_out_residual_m": 4080.8
+      },
+      {
+        "town": "Horath",
+        "geonames_id": 2899123,
+        "source_pixel_xy": [
+          905,
+          1061
+        ],
+        "source_wgs84_lon_lat": [
+          6.98593,
+          49.81085
+        ],
+        "geographic_source": "https://sws.geonames.org/2899123/about.rdf",
+        "fitted_wgs84_lon_lat": [
+          6.9834697,
+          49.8091165
+        ],
+        "fit_residual_m": 261.4,
+        "leave_one_out_residual_m": 634.5
+      }
+    ]
+  },
+  "digitization": {
+    "method": "manual visual trace of the source diagram's visible black dotted line",
+    "vertex_count": 131,
+    "source_pixel_vertices_xy": [
+      [
+        586,
+        815
+      ],
+      [
+        588,
+        797
+      ],
+      [
+        600,
+        780
+      ],
+      [
+        616,
+        766
+      ],
+      [
+        628,
+        751
+      ],
+      [
+        630,
+        741
+      ],
+      [
+        625,
+        723
+      ],
+      [
+        614,
+        706
+      ],
+      [
+        609,
+        694
+      ],
+      [
+        607,
+        663
+      ],
+      [
+        602,
+        641
+      ],
+      [
+        595,
+        626
+      ],
+      [
+        570,
+        602
+      ],
+      [
+        551,
+        580
+      ],
+      [
+        533,
+        563
+      ],
+      [
+        519,
+        557
+      ],
+      [
+        493,
+        551
+      ],
+      [
+        466,
+        544
+      ],
+      [
+        449,
+        536
+      ],
+      [
+        439,
+        525
+      ],
+      [
+        434,
+        511
+      ],
+      [
+        431,
+        491
+      ],
+      [
+        426,
+        466
+      ],
+      [
+        409,
+        466
+      ],
+      [
+        393,
+        480
+      ],
+      [
+        378,
+        495
+      ],
+      [
+        363,
+        505
+      ],
+      [
+        350,
+        508
+      ],
+      [
+        331,
+        508
+      ],
+      [
+        311,
+        504
+      ],
+      [
+        289,
+        497
+      ],
+      [
+        272,
+        488
+      ],
+      [
+        267,
+        478
+      ],
+      [
+        267,
+        470
+      ],
+      [
+        274,
+        458
+      ],
+      [
+        278,
+        448
+      ],
+      [
+        273,
+        430
+      ],
+      [
+        267,
+        410
+      ],
+      [
+        264,
+        392
+      ],
+      [
+        262,
+        374
+      ],
+      [
+        265,
+        357
+      ],
+      [
+        271,
+        341
+      ],
+      [
+        285,
+        325
+      ],
+      [
+        305,
+        309
+      ],
+      [
+        326,
+        294
+      ],
+      [
+        349,
+        280
+      ],
+      [
+        371,
+        271
+      ],
+      [
+        383,
+        268
+      ],
+      [
+        406,
+        265
+      ],
+      [
+        434,
+        267
+      ],
+      [
+        464,
+        268
+      ],
+      [
+        484,
+        270
+      ],
+      [
+        492,
+        256
+      ],
+      [
+        495,
+        238
+      ],
+      [
+        509,
+        225
+      ],
+      [
+        536,
+        205
+      ],
+      [
+        566,
+        185
+      ],
+      [
+        596,
+        164
+      ],
+      [
+        616,
+        151
+      ],
+      [
+        636,
+        147
+      ],
+      [
+        662,
+        147
+      ],
+      [
+        689,
+        141
+      ],
+      [
+        728,
+        135
+      ],
+      [
+        771,
+        129
+      ],
+      [
+        812,
+        124
+      ],
+      [
+        851,
+        122
+      ],
+      [
+        869,
+        125
+      ],
+      [
+        884,
+        134
+      ],
+      [
+        900,
+        143
+      ],
+      [
+        915,
+        133
+      ],
+      [
+        930,
+        122
+      ],
+      [
+        944,
+        128
+      ],
+      [
+        958,
+        141
+      ],
+      [
+        975,
+        157
+      ],
+      [
+        986,
+        161
+      ],
+      [
+        1005,
+        167
+      ],
+      [
+        1025,
+        171
+      ],
+      [
+        1036,
+        178
+      ],
+      [
+        1040,
+        201
+      ],
+      [
+        1047,
+        227
+      ],
+      [
+        1034,
+        240
+      ],
+      [
+        1060,
+        252
+      ],
+      [
+        1074,
+        264
+      ],
+      [
+        1083,
+        277
+      ],
+      [
+        1084,
+        296
+      ],
+      [
+        1081,
+        321
+      ],
+      [
+        1080,
+        337
+      ],
+      [
+        1087,
+        356
+      ],
+      [
+        1103,
+        379
+      ],
+      [
+        1120,
+        402
+      ],
+      [
+        1136,
+        425
+      ],
+      [
+        1154,
+        443
+      ],
+      [
+        1178,
+        461
+      ],
+      [
+        1203,
+        477
+      ],
+      [
+        1233,
+        495
+      ],
+      [
+        1249,
+        510
+      ],
+      [
+        1254,
+        527
+      ],
+      [
+        1272,
+        548
+      ],
+      [
+        1297,
+        567
+      ],
+      [
+        1323,
+        584
+      ],
+      [
+        1348,
+        601
+      ],
+      [
+        1361,
+        615
+      ],
+      [
+        1360,
+        628
+      ],
+      [
+        1348,
+        648
+      ],
+      [
+        1347,
+        661
+      ],
+      [
+        1355,
+        682
+      ],
+      [
+        1361,
+        704
+      ],
+      [
+        1360,
+        726
+      ],
+      [
+        1354,
+        743
+      ],
+      [
+        1343,
+        758
+      ],
+      [
+        1327,
+        770
+      ],
+      [
+        1296,
+        780
+      ],
+      [
+        1259,
+        790
+      ],
+      [
+        1228,
+        800
+      ],
+      [
+        1191,
+        807
+      ],
+      [
+        1150,
+        815
+      ],
+      [
+        1149,
+        827
+      ],
+      [
+        1157,
+        844
+      ],
+      [
+        1164,
+        864
+      ],
+      [
+        1165,
+        882
+      ],
+      [
+        1162,
+        900
+      ],
+      [
+        1160,
+        923
+      ],
+      [
+        1156,
+        950
+      ],
+      [
+        1151,
+        973
+      ],
+      [
+        1144,
+        994
+      ],
+      [
+        1135,
+        1015
+      ],
+      [
+        1121,
+        1037
+      ],
+      [
+        1104,
+        1059
+      ],
+      [
+        1081,
+        1081
+      ],
+      [
+        1054,
+        1101
+      ],
+      [
+        1027,
+        1119
+      ]
+    ],
+    "closed": false,
+    "fill": false,
+    "interpolate_to_town_labels": false,
+    "coordinate_precision_note": "Five stored decimal places preserve deterministic reproduction of the affine transform; they do not claim metre-level geographic accuracy.",
+    "southwest_endpoint": "Trace stops where black dotted line becomes indistinct and meets the gray national-border line, before the bottom crop. The gray national border is not traced.",
+    "southeast_endpoint": "Visible black dotted line reaches the lower map frame at source pixel [1027,1119]; no off-image continuation is inferred.",
+    "omitted_fragment": {
+      "source_pixel_vertices_xy": [
+        [
+          812,
+          1118
+        ],
+        [
+          826,
+          1113
+        ],
+        [
+          841,
+          1118
+        ]
+      ],
+      "reason": "Tiny disconnected fragment at the bottom crop; omitted from the main overlay rather than connected through unseen territory."
+    }
+  },
+  "feature": {
+    "type": "Feature",
+    "properties": {
+      "id": "gussenhoven-peters-2019-tonal-isogloss-visible-part",
+      "label": "Approximate tonal isogloss from the published 2019 overview",
+      "source_year": 2019,
+      "source_doi": "https://doi.org/10.1017/S095267571900023X",
+      "basis_year": 1965,
+      "basis": "Goossens 1965, map 2, via Gussenhoven & Peters 2019 Fig. 1",
+      "schematic": true,
+      "closed": false
+    },
+    "geometry": {
+      "type": "LineString",
+      "coordinates": [
+        [
+          6.10557,
+          50.23197
+        ],
+        [
+          6.109,
+          50.26404
+        ],
+        [
+          6.13924,
+          50.29478
+        ],
+        [
+          6.18048,
+          50.32037
+        ],
+        [
+          6.21093,
+          50.34756
+        ],
+        [
+          6.21521,
+          50.36541
+        ],
+        [
+          6.19995,
+          50.39717
+        ],
+        [
+          6.16878,
+          50.42689
+        ],
+        [
+          6.15415,
+          50.44798
+        ],
+        [
+          6.14552,
+          50.50298
+        ],
+        [
+          6.12984,
+          50.54184
+        ],
+        [
+          6.10955,
+          50.56818
+        ],
+        [
+          6.04025,
+          50.60971
+        ],
+        [
+          5.98718,
+          50.64795
+        ],
+        [
+          5.93732,
+          50.67735
+        ],
+        [
+          5.8993,
+          50.68739
+        ],
+        [
+          5.82924,
+          50.69689
+        ],
+        [
+          5.7564,
+          50.70812
+        ],
+        [
+          5.71016,
+          50.72158
+        ],
+        [
+          5.68229,
+          50.74067
+        ],
+        [
+          5.66745,
+          50.76533
+        ],
+        [
+          5.65732,
+          50.80073
+        ],
+        [
+          5.64131,
+          50.84492
+        ],
+        [
+          5.59592,
+          50.84417
+        ],
+        [
+          5.55468,
+          50.81858
+        ],
+        [
+          5.51622,
+          50.79126
+        ],
+        [
+          5.47723,
+          50.77282
+        ],
+        [
+          5.44283,
+          50.76691
+        ],
+        [
+          5.3921,
+          50.76606
+        ],
+        [
+          5.33827,
+          50.77228
+        ],
+        [
+          5.27878,
+          50.78373
+        ],
+        [
+          5.23244,
+          50.79897
+        ],
+        [
+          5.21802,
+          50.81651
+        ],
+        [
+          5.21717,
+          50.83073
+        ],
+        [
+          5.23459,
+          50.85236
+        ],
+        [
+          5.24421,
+          50.8703
+        ],
+        [
+          5.22895,
+          50.90206
+        ],
+        [
+          5.21081,
+          50.93733
+        ],
+        [
+          5.20089,
+          50.96918
+        ],
+        [
+          5.19364,
+          51.00107
+        ],
+        [
+          5.19985,
+          51.03141
+        ],
+        [
+          5.21417,
+          51.06011
+        ],
+        [
+          5.24986,
+          51.08916
+        ],
+        [
+          5.30156,
+          51.11848
+        ],
+        [
+          5.35605,
+          51.14607
+        ],
+        [
+          5.41597,
+          51.17197
+        ],
+        [
+          5.47376,
+          51.18894
+        ],
+        [
+          5.50549,
+          51.1948
+        ],
+        [
+          5.56659,
+          51.20116
+        ],
+        [
+          5.64156,
+          51.19885
+        ],
+        [
+          5.72178,
+          51.19842
+        ],
+        [
+          5.77539,
+          51.19575
+        ],
+        [
+          5.79527,
+          51.22099
+        ],
+        [
+          5.80137,
+          51.2531
+        ],
+        [
+          5.83737,
+          51.27682
+        ],
+        [
+          5.90735,
+          51.31356
+        ],
+        [
+          5.98533,
+          51.35044
+        ],
+        [
+          6.06321,
+          51.38909
+        ],
+        [
+          6.11524,
+          51.41308
+        ],
+        [
+          6.16822,
+          51.42107
+        ],
+        [
+          6.23764,
+          51.42223
+        ],
+        [
+          6.3091,
+          51.4341
+        ],
+        [
+          6.4126,
+          51.4465
+        ],
+        [
+          6.52678,
+          51.45908
+        ],
+        [
+          6.63573,
+          51.46979
+        ],
+        [
+          6.73966,
+          51.47508
+        ],
+        [
+          6.78804,
+          51.47055
+        ],
+        [
+          6.82905,
+          51.45523
+        ],
+        [
+          6.87273,
+          51.43996
+        ],
+        [
+          6.91172,
+          51.45839
+        ],
+        [
+          6.95061,
+          51.4786
+        ],
+        [
+          6.98863,
+          51.46857
+        ],
+        [
+          7.02739,
+          51.4461
+        ],
+        [
+          7.07448,
+          51.41843
+        ],
+        [
+          7.10428,
+          51.41181
+        ],
+        [
+          7.15565,
+          51.402
+        ],
+        [
+          7.20947,
+          51.39578
+        ],
+        [
+          7.23959,
+          51.38383
+        ],
+        [
+          7.25271,
+          51.34315
+        ],
+        [
+          7.27416,
+          51.29726
+        ],
+        [
+          7.24083,
+          51.27359
+        ],
+        [
+          7.31153,
+          51.25342
+        ],
+        [
+          7.35018,
+          51.23273
+        ],
+        [
+          7.37559,
+          51.21003
+        ],
+        [
+          7.38028,
+          51.17632
+        ],
+        [
+          7.37492,
+          51.13176
+        ],
+        [
+          7.37395,
+          51.10329
+        ],
+        [
+          7.39465,
+          51.06985
+        ],
+        [
+          7.43982,
+          51.02969
+        ],
+        [
+          7.48765,
+          50.98959
+        ],
+        [
+          7.53282,
+          50.94944
+        ],
+        [
+          7.58279,
+          50.91826
+        ],
+        [
+          7.64878,
+          50.88735
+        ],
+        [
+          7.71724,
+          50.86003
+        ],
+        [
+          7.79925,
+          50.82939
+        ],
+        [
+          7.84357,
+          50.80345
+        ],
+        [
+          7.85872,
+          50.77347
+        ],
+        [
+          7.90901,
+          50.73696
+        ],
+        [
+          7.97778,
+          50.70432
+        ],
+        [
+          8.04901,
+          50.67527
+        ],
+        [
+          8.11757,
+          50.64618
+        ],
+        [
+          8.15377,
+          50.62189
+        ],
+        [
+          8.15248,
+          50.59874
+        ],
+        [
+          8.12256,
+          50.56267
+        ],
+        [
+          8.12127,
+          50.53953
+        ],
+        [
+          8.14486,
+          50.50258
+        ],
+        [
+          8.16321,
+          50.46375
+        ],
+        [
+          8.16288,
+          50.42462
+        ],
+        [
+          8.14866,
+          50.39415
+        ],
+        [
+          8.12088,
+          50.36701
+        ],
+        [
+          8.07943,
+          50.34497
+        ],
+        [
+          7.99771,
+          50.32582
+        ],
+        [
+          7.89997,
+          50.3064
+        ],
+        [
+          7.81826,
+          50.28725
+        ],
+        [
+          7.7202,
+          50.27317
+        ],
+        [
+          7.61157,
+          50.25712
+        ],
+        [
+          7.61018,
+          50.23576
+        ],
+        [
+          7.63334,
+          50.20591
+        ],
+        [
+          7.65415,
+          50.17069
+        ],
+        [
+          7.65873,
+          50.13875
+        ],
+        [
+          7.65263,
+          50.10664
+        ],
+        [
+          7.64973,
+          50.06568
+        ],
+        [
+          7.64192,
+          50.01753
+        ],
+        [
+          7.63101,
+          49.97644
+        ],
+        [
+          7.61454,
+          49.93882
+        ],
+        [
+          7.59274,
+          49.9011
+        ],
+        [
+          7.55769,
+          49.86139
+        ],
+        [
+          7.51463,
+          49.82154
+        ],
+        [
+          7.45555,
+          49.78143
+        ],
+        [
+          7.38557,
+          49.74469
+        ],
+        [
+          7.31539,
+          49.71151
+        ]
+      ]
+    }
+  },
+  "implementation_limits": [
+    "Use a dashed open stroke, not a polygon, fill, buffer, or point-derived area.",
+    "Display source and year; describe the result as schematic and historical literature context.",
+    "Do not use point-in-region logic or distance to this line to classify a town.",
+    "Do not interpret the line as an exclusive tonal-accent versus vowel-length boundary: quantity can coexist with tonal accent.",
+    "Do not interpret territory outside the line as confirmed absence of tonal accent.",
+    "Do not extend southern endpoints, join the small crop fragment, or replace untraced portions with national borders.",
+    "The source diagram is distorted, especially in tightly spaced Limburg towns; several-kilometre town residuals preclude precise local-boundary interpretation.",
+    "Town classification, including Weert outside the northern source isogloss, follows individual literature evidence, not this drawing."
+  ]
+}

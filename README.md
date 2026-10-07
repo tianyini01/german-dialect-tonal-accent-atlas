@@ -14,7 +14,9 @@ To preview locally from this directory, run `python3 -m http.server 8000` and op
 
 The map separates published tonal-accent patterns from vowel-quantity descriptions. Accent patterns are described for a specified sentence type and position; historical word classes are kept consistent when comparing Rule A and Rule B. Aachen and Baden retain unresolved current accent status. No F0 dataset is taken as proof of the absence of tonal accent.
 
-Arzbach, Hasselt and Weert are literature entries with source links, not new measurement datasets. Quantity entries open duration analysis by default; Leer F0 remains available as supplementary measurements and for etymology comparisons. Marker colors continue to identify language groups.
+Arzbach, Hasselt and Weert are literature entries with source links, not new measurement datasets. Quantity entries open duration analysis by default; Leer F0 remains available as supplementary measurements and for etymology comparisons. Marker colors continue to identify language groups. Additional town profiles cite the published literature for Roermond, Venlo, Maastricht, Borgloon, Neerpelt and Hamont.
+
+The optional tonal-isogloss layer is an open schematic trace of Gussenhoven & Peters (2019), Fig. 1 (based on Goossens 1965), adapted under CC BY 4.0. The original figure and trace/georeferencing record are in `references/`. Its several-kilometre fitting uncertainty supports a regional overview only, so it is hidden at detailed street-map zoom. No polygon, interpolation between atlas points, or classification by distance to the line is used. Town descriptions determine their labels; unlabelled territory is not classified as lacking tonal accent. Tonal accent and vowel quantity can coexist.
 
 ## Research data
 

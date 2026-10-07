@@ -97,6 +97,15 @@ footer{gap:1rem;line-height:1.45}
 .map-dot.literature-only,.atlas-pin-host.literature-only .atlas-pin,.typology-symbol.literature-only{border-style:dashed}
 .map-dot.unclassified,.atlas-pin-host.unclassified .atlas-pin,.typology-symbol.unclassified{border-style:dotted}
 .atlas-pin-host{background:none;border:0}
+.atlas-town-label{display:none;position:absolute;left:34px;top:5px;padding:2px 5px;border:1px solid #d0dcdd;border-radius:3px;background:rgba(255,255,255,.96);font-size:.74rem;font-weight:650;color:#193349;white-space:nowrap;box-shadow:0 1px 3px #1a35351a}
+.show-town-labels .atlas-town-label{display:block}
+.map-layer-controls{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;padding:.6rem 1rem;background:#f8fbfb;border-top:1px solid #d7e5e9;color:#315e6d;font-size:.82rem}
+.map-layer-controls .check-row{margin:0;display:flex;align-items:center;gap:.4rem;cursor:pointer}
+.map-layer-controls input{width:15px;height:15px;accent-color:#247b83}
+.map-boundary-source{padding:.65rem 1rem;background:#f8fbfb;border-top:1px solid #d7e5e9;color:#526d72;font-size:.8rem}
+.map-boundary-source summary{cursor:pointer;font-weight:700}
+.map-boundary-source p{font-size:.8rem!important;line-height:1.5!important;margin:.6rem 0!important}
+.map-boundary-source a{color:#116f7b;text-decoration:underline}
 .atlas-pin-host:focus-visible .atlas-pin{outline:3px solid #0b2034;outline-offset:4px}
 .map-typology-heading{display:flex;justify-content:space-between;align-items:baseline;gap:.75rem;padding:.85rem 1rem .35rem;background:#fff;border-top:1px solid #d7e5e9;color:#193349}
 .map-typology-heading strong{font-size:.9rem}

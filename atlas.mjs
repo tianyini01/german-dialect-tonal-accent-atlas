@@ -1,5 +1,6 @@
 import { languageColor } from "./map-palette.mjs";
-import { contrastBasisClass, contrastSymbol } from "./typology-map.mjs?v=21";
+import { contrastBasisClass, contrastSymbol } from "./typology-map.mjs?v=22";
+import { boundaryColor, publishedBoundaries } from "./boundary-map.mjs?v=22";
 
 const SVG_NS = "http://www.w3.org/2000/svg";
 const WIDTH = 720;
@@ -44,7 +45,7 @@ function pathFor(geometry) {
   }).join(" ") + " Z").join(" ");
 }
 
-export function renderAtlasMap(container, entries, visibleIds, basemap, onSelect) {
+export function renderAtlasMap(container, entries, visibleIds, basemap, onSelect, boundaries = null) {
   controllers.get(container)?.abort();
   container.replaceChildren();
   container.tabIndex = 0;
@@ -88,6 +89,16 @@ export function renderAtlasMap(container, entries, visibleIds, basemap, onSelect
       "fill-rule": "evenodd",
       "vector-effect": "non-scaling-stroke"
     }));
+  });
+  publishedBoundaries(boundaries).forEach(feature => {
+    const d = feature.geometry.coordinates.map(([longitude, latitude], index) => {
+      const [x, y] = project(longitude, latitude);
+      return `${index ? "L" : "M"}${x.toFixed(1)},${y.toFixed(1)}`;
+    }).join(" ");
+    const line = svg("path", { d, fill: "none", stroke: boundaryColor, "stroke-width": 2.5,
+      "stroke-dasharray": "7 6", "vector-effect": "non-scaling-stroke" });
+    line.append(svg("title", {}, `${feature.properties.name}. ${feature.properties.description}`));
+    map.append(line);
   });
   const labels = [
     ["GERMANY", 11.3, 50.7], ["NETHERLANDS", 4.7, 52.5],
