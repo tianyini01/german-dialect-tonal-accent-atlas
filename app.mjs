@@ -8,7 +8,6 @@ import { renderPhysicalTimeGammView } from "./physical-gamm-view.mjs";
 import { renderAtlasMap } from "./atlas.mjs?v=22";
 import { renderLiveAtlasMap, destroyLiveAtlasMap } from "./live-atlas.mjs?v=22";
 import { languageColor } from "./map-palette.mjs";
-import { contrastBasisClass, contrastSymbol } from "./typology-map.mjs?v=22";
 import { linkedWordSets, orderLinkedGroups } from "./linked-word-sets.mjs?v=19";
 import { renderEvidenceCard } from "./evidence-cards.mjs";
 
@@ -253,23 +252,6 @@ function renderCatalog() {
     : boundaries?.features?.length
       ? "Dashed line: approximate trace of the published tonal isogloss; the southern extent is cropped in the source figure."
       : "Town labels show cited descriptions; unlabelled areas remain unclassified.";
-  const typologyList = $("map-typology");
-  typologyList.replaceChildren();
-  filtered.forEach(dialect => {
-    const card = element("button", "typology-card");
-    card.type = "button";
-    card.setAttribute("aria-label", `View typology evidence for ${dialect.title}: ${dialect.typology?.contrast || "not classified"}`);
-    const symbol = element("span", `typology-symbol ${contrastBasisClass(dialect)}`, contrastSymbol(dialect));
-    symbol.style.setProperty("--marker-color", languageColor(dialect.family));
-    symbol.setAttribute("aria-hidden", "true");
-    const content = element("span", "typology-card-copy");
-    content.append(element("strong", "", dialect.title), element("span", "", dialect.typology?.contrast || "Present-day type unclassified"));
-    content.append(element("span", "typology-card-evidence", `${dialect.language || dialect.family} · ${dialect.measurementSets.length
-      ? "Atlas data" : "Literature"}`));
-    card.append(symbol, content);
-    card.addEventListener("click", () => showDialect(dialect));
-    typologyList.append(card);
-  });
   $("catalog-empty").hidden = filtered.length > 0;
 }
 
