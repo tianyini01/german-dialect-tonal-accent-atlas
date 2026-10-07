@@ -1,4 +1,5 @@
 import { languageColor } from "./map-palette.mjs";
+import { contrastBasisClass, contrastSymbol } from "./typology-map.mjs";
 
 const maps = new WeakMap();
 const TILE_URL = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -15,16 +16,18 @@ function coordinates(entry) {
     : null;
 }
 
-function markerStyle(entry, visible) {
-  return {
-    radius: 12,
-    color: "#ffffff",
-    weight: 2,
-    opacity: visible ? 1 : 0.35,
-    fillColor: languageColor(entry.family),
-    fillOpacity: visible ? 0.95 : 0.22,
-    interactive: true
-  };
+function markerIcon(entry) {
+  // Only the fixed symbols returned by contrastSymbol enter the icon markup.
+  const symbol = contrastSymbol(entry);
+  const color = languageColor(entry.family);
+  const basis = contrastBasisClass(entry);
+  return window.L.divIcon({
+    className: `atlas-pin-host ${basis}`,
+    html: `<span class="atlas-pin" style="--marker-color:${color}">${symbol}</span>`,
+    iconSize: [30, 30],
+    iconAnchor: [15, 15],
+    tooltipAnchor: [0, -15]
+  });
 }
 
 function tooltipContent(entry) {
@@ -34,7 +37,9 @@ function tooltipContent(entry) {
   title.textContent = entry.title || entry.place || "Study locality";
   const detail = document.createElement("span");
   detail.textContent = [entry.family, entry.place || "Approximate locality"].filter(Boolean).join(" · ");
-  content.append(title, document.createElement("br"), detail);
+  const contrast = document.createElement("span");
+  contrast.textContent = entry.typology?.contrast || "Prosodic classification pending";
+  content.append(title, document.createElement("br"), detail, document.createElement("br"), contrast);
   return content;
 }
 
@@ -137,7 +142,7 @@ function syncMarkers(state, entries, visibleIds) {
     const visible = visibleIds?.has?.(entry.id) ?? true;
     let item = state.markers.get(entry.id);
     if (!item) {
-      const marker = window.L.circleMarker(latLng, markerStyle(entry, visible)).addTo(state.map);
+      const marker = window.L.marker(latLng, { icon: markerIcon(entry) }).addTo(state.map);
       item = { marker, entry };
       marker.bindTooltip(tooltipContent(entry), { direction: "top", offset: [0, -8], opacity: 0.97 });
       marker.on("click", () => state.onSelect?.(item.entry));
@@ -145,7 +150,7 @@ function syncMarkers(state, entries, visibleIds) {
       if (path) {
         path.setAttribute("role", "button");
         path.setAttribute("tabindex", "0");
-        path.setAttribute("aria-label", `View data for ${entry.title}`);
+        path.setAttribute("aria-label", `${entry.title}: ${entry.typology?.contrast || "classification pending"}. View data`);
         path.addEventListener("keydown", event => {
           if (event.key !== "Enter" && event.key !== " ") return;
           event.preventDefault();
@@ -156,21 +161,16 @@ function syncMarkers(state, entries, visibleIds) {
     } else {
       item.entry = entry;
       item.marker.setLatLng(latLng);
-      item.marker.setStyle(markerStyle(entry, visible));
-      item.marker.setRadius(12);
       item.marker.setTooltipContent(tooltipContent(entry));
-      item.marker.getElement()?.setAttribute("aria-label", `View data for ${entry.title}`);
+      item.marker.getElement()?.setAttribute("aria-label", `${entry.title}: ${entry.typology?.contrast || "classification pending"}. View data`);
     }
+    item.marker.setOpacity(visible ? 1 : 0.35);
+    item.marker.setZIndexOffset(visible ? 1000 : 0);
   }
   for (const [id, item] of state.markers) {
     if (nextIds.has(id)) continue;
     item.marker.remove();
     state.markers.delete(id);
-  }
-  for (const passVisible of [false, true]) {
-    for (const [id, item] of state.markers) {
-      if ((visibleIds?.has?.(id) ?? true) === passVisible) item.marker.bringToFront();
-    }
   }
 }
 

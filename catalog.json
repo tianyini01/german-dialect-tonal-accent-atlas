@@ -65,7 +65,21 @@
         "nativeProfile": "Physical-time F0 CSV",
         "dataFile": "./data/leer-f0-physical.csv"
       }
-    ]
+    ],
+    "typology": {
+      "kind": "length",
+      "contrast": "Long–overlong vowel duration",
+      "basis": "Atlas condition labels and Ni, Rocker & Köhnlein (2025).",
+      "atlasEvidence": "10 speakers and 6 word pairs in the duration table; a separate sample has measured F0 contours.",
+      "caveat": "These are phonetic length classes. The F0 and duration tables use independent speaker codes; the status of lexical tone is not settled by this atlas.",
+      "sources": [
+        {
+          "label": "Ni, Rocker & Köhnlein (2025)",
+          "url": "https://doi.org/10.7275/amphonology.3047"
+        }
+      ],
+      "classificationSource": "atlas-and-literature"
+    }
   },
   {
     "id": "aachen-franconian",
@@ -109,7 +123,21 @@
         "nativeProfile": "Physical-time F0 CSV",
         "dataFile": "./data/aachen-f0-physical.csv"
       }
-    ]
+    ],
+    "typology": {
+      "kind": "accent",
+      "contrast": "Accent 1–2 word accent",
+      "basis": "Atlas accent labels and Köhnlein, Dang & Ni's comparative fieldwork report.",
+      "atlasEvidence": "8 speakers, 12 complete word pairs, F0 and same-token vowel duration in 4 sentence/position contexts.",
+      "caveat": "The present-day role of F0 needs a direct contrast test; the research team reports possible tonal neutralization. Focus labels are not fully matched to Leer.",
+      "sources": [
+        {
+          "label": "Köhnlein, Dang & Ni, pp. 44–45",
+          "url": "https://linguistics.unt.edu/files/31st_germanic_linguistics_annual_conference_handbook.pdf"
+        }
+      ],
+      "classificationSource": "atlas-and-literature"
+    }
   },
   {
     "id": "baden-low-german",
@@ -195,7 +223,21 @@
         "defaultConditionB": "Seide",
         "analysisUnit": "speaker-coded series"
       }
-    ]
+    ],
+    "typology": {
+      "kind": "unclassified",
+      "contrast": "Present-day contrast unclassified",
+      "basis": "Prehn (2012) reviews Feyer's (1941) historical Baden report; current atlas evidence is preliminary.",
+      "atlasEvidence": "3 lexical pairs and 33 duration tokens from a first-trip workbook; no F0 measurements are included.",
+      "caveat": "The historical report of three phonetic lengths does not classify the current sample. Workbook series and vowel boundaries need independent verification.",
+      "sources": [
+        {
+          "label": "Prehn (2012), reviewing Feyer (1941)",
+          "url": "https://pure.uva.nl/ws/files/1168325/101802_06.pdf"
+        }
+      ],
+      "classificationSource": "unclassified"
+    }
   },
   {
     "id": "cologne-franconian",
@@ -263,6 +305,20 @@
         "summary": "Forty-eight schwa duration tokens from the Cologne fieldwork worksheet; values converted from seconds to milliseconds.",
         "dataFile": "./data/cologne-schwa-duration.csv"
       }
-    ]
+    ],
+    "typology": {
+      "kind": "accent",
+      "contrast": "Accent 1–2 tonal accent (literature)",
+      "basis": "Published Cologne description by Gussenhoven & Peters (2004).",
+      "atlasEvidence": "One participant's full-vowel and schwa duration tables, 48 tokens each; no F0 measurements are included here.",
+      "caveat": "This atlas sample does not independently reproduce the tonal contrast or map its geographic distribution.",
+      "sources": [
+        {
+          "label": "Gussenhoven & Peters (2004)",
+          "url": "https://fileserver-az.core.ac.uk/download/16147733.pdf"
+        }
+      ],
+      "classificationSource": "literature"
+    }
   }
 ]

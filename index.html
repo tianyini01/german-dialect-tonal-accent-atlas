@@ -8,9 +8,9 @@
   <title>Germanic Dialect Tonal Accent Atlas</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b2034'/%3E%3Cpath d='M8 42C18 42 18 20 28 20s10 24 20 24 8-8 8-8' fill='none' stroke='%2358d6d0' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E" />
   <link rel="stylesheet" href="./vendor/leaflet/leaflet.css" />
-  <link rel="stylesheet" href="./styles.css?v=19" />
+  <link rel="stylesheet" href="./styles.css?v=20" />
   <script src="./vendor/leaflet/leaflet.js"></script>
-  <script type="module" src="./app.mjs?v=19"></script>
+  <script type="module" src="./app.mjs?v=20"></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -26,12 +26,12 @@
         <label for="search">Search</label><input id="search" type="search" placeholder="Variety, place, measure…" autocomplete="off" />
         <label for="family-filter">Language group</label><select id="family-filter"><option value="">All language groups</option></select>
         <label for="place-filter">Place</label><select id="place-filter"><option value="">All places</option></select>
-        <div class="sidebar-note"><strong>What the map shows</strong><p>Marker colors identify language groups. F0 and vowel duration are measurements available within each locality, not map categories. Markers locate study areas approximately, not individual speakers or dialect distribution boundaries.</p><strong>Research data</strong><p>Approved derived measurements are included. Original recordings, annotations and exact speaker locations are not bundled.</p></div>
+        <div class="sidebar-note"><strong>What the map shows</strong><p>Marker colors identify language groups; letters identify documented word-prosodic contrasts. The detail for each place separates published descriptions from measurements in this atlas. Markers locate study areas approximately, not individual speakers or dialect distribution boundaries.</p><strong>Research data</strong><p>Approved derived measurements are included. Original recordings, annotations and exact speaker locations are not bundled.</p></div>
       </aside>
       <section id="repository" class="content" aria-labelledby="repo-title">
         <div class="section-top"><div><p class="eyebrow">ATLAS</p><h1 id="repo-title">Browse the dialect atlas.</h1><p class="atlas-instruction">Select a map marker to open that locality’s measurements in the data workspace.</p></div></div>
         <div class="atlas-layout">
-          <div class="map-panel"><div class="map-heading"><strong>Explore the language area</strong><span>Drag, zoom, and select a marker</span></div><div id="atlas-map" class="atlas-map"></div><p class="map-caption"><span role="group" aria-label="Marker colors by language group">Language groups: <span id="map-language-legend" class="map-language-legend"></span></span> <span id="map-mode">Loading street map.</span> <span id="distribution-note">No dialect-area boundaries are inferred.</span> Map tiles: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>; offline outline: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">Natural Earth</a>; locality anchors: <a href="https://www.geonames.org/" target="_blank" rel="noopener noreferrer">GeoNames</a> (CC BY 4.0).</p></div>
+          <div class="map-panel"><div class="map-heading"><strong>Explore the language area</strong><span>Drag, zoom, and select a marker</span></div><div id="atlas-map" class="atlas-map"></div><div class="map-typology-heading"><strong>Documented prosodic contrasts</strong><span>Choose a place to read the evidence</span></div><div id="map-typology" class="map-typology" aria-label="Contrast labels at study localities"></div><p class="map-caption"><span role="group" aria-label="Marker colors by language group">Language groups: <span id="map-language-legend" class="map-language-legend"></span></span> <span class="contrast-key">Letters: <b>L</b> long–overlong; <b>A</b> Accent 1–2; <b>?</b> unclassified. Dashed outline: literature description only.</span> <span id="map-mode">Loading street map.</span> <span id="distribution-note">No dialect-area boundaries are inferred.</span> Map tiles: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>; offline outline: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">Natural Earth</a>; locality anchors: <a href="https://www.geonames.org/" target="_blank" rel="noopener noreferrer">GeoNames</a> (CC BY 4.0).</p></div>
         </div>
         <p id="catalog-empty" class="empty" hidden>No dialects match these filters.</p>
       </section>

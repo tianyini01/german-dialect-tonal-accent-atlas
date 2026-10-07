@@ -8,6 +8,7 @@ import { renderPhysicalTimeGammView } from "./physical-gamm-view.mjs";
 import { renderAtlasMap } from "./atlas.mjs";
 import { renderLiveAtlasMap, destroyLiveAtlasMap } from "./live-atlas.mjs";
 import { languageColor } from "./map-palette.mjs";
+import { contrastBasisClass, contrastSymbol } from "./typology-map.mjs";
 import { linkedWordSets, orderLinkedGroups } from "./linked-word-sets.mjs?v=19";
 import { renderEvidenceCard } from "./evidence-cards.mjs";
 
@@ -237,6 +238,21 @@ function renderCatalog() {
   $("distribution-note").textContent = mappedAreas
     ? `${mappedAreas} evidence-backed dialect area ${mappedAreas === 1 ? "layer is" : "layers are"} shown.`
     : "No dialect-area boundaries are inferred.";
+  const typologyList = $("map-typology");
+  typologyList.replaceChildren();
+  filtered.forEach(dialect => {
+    const card = element("button", "typology-card");
+    card.type = "button";
+    card.setAttribute("aria-label", `View typology evidence for ${dialect.title}: ${dialect.typology?.contrast || "not classified"}`);
+    const symbol = element("span", `typology-symbol ${contrastBasisClass(dialect)}`, contrastSymbol(dialect));
+    symbol.style.setProperty("--marker-color", languageColor(dialect.family));
+    symbol.setAttribute("aria-hidden", "true");
+    const content = element("span", "typology-card-copy");
+    content.append(element("strong", "", dialect.title), element("span", "", dialect.typology?.contrast || "Present-day type unclassified"));
+    card.append(symbol, content);
+    card.addEventListener("click", () => showDialect(dialect));
+    typologyList.append(card);
+  });
   $("catalog-empty").hidden = filtered.length > 0;
 }
 
@@ -247,12 +263,28 @@ function showDialect(dialect) {
   const fields = [
     ["Variety", dialect.title], ["Location", `${dialect.place}. ${dialect.placeNote}`],
     ["Map position", `${dialect.map.precision}; source: ${dialect.map.source}. ${dialect.map.distributionGeometry && dialect.map.distributionSource ? `Dialect-area source: ${dialect.map.distributionSource}.` : "No verified dialect-area boundary."}`],
+    ["Documented contrast", dialect.typology?.contrast || "Not classified"],
+    ["Classification basis", dialect.typology?.basis || "Not established"],
+    ["Evidence in this atlas", dialect.typology?.atlasEvidence || "No comparable measurements"],
+    ["Interpretation limit", dialect.typology?.caveat || "Classification requires further evidence"],
     ["Speakers", Number.isInteger(dialect.speakerCount) ? `${dialect.speakerCount} pseudonymous ${dialect.speakerCount === 1 ? "speaker ID" : "speaker IDs"}; demographics not verified` : "Count not established for this review entry"],
     ["Recordings", dialect.recordings], ["Data access", dialect.access]
   ];
   const dl = $("dialog-fields");
   dl.replaceChildren();
   fields.forEach(([label, value]) => { dl.append(element("dt", "", label), element("dd", "", value)); });
+  if (dialect.typology?.sources?.length) {
+    const references = element("dd", "typology-sources");
+    dialect.typology.sources.forEach((source, index) => {
+      if (index) references.append(document.createTextNode(" · "));
+      const link = element("a", "", source.label);
+      link.href = source.url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      references.append(link);
+    });
+    dl.append(element("dt", "", "Sources"), references);
+  }
   const sets = $("dialog-measurements");
   sets.replaceChildren(element("h3", "", "Available measurements"));
   if (!dialect.measurementSets.length) sets.append(element("p", "fieldwork-note", "Source files are identified, but no measurement set has been verified for browser analysis."));
