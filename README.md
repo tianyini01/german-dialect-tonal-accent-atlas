@@ -16,6 +16,8 @@ The map separates published tonal-accent patterns from vowel-quantity descriptio
 
 Arzbach, Hasselt and Weert are literature entries with source links, not new measurement datasets. Quantity entries open duration analysis by default; Leer F0 remains available as supplementary measurements and for etymology comparisons. Marker colors continue to identify language groups. Additional town profiles cite the published literature for Roermond, Venlo, Maastricht, Borgloon, Neerpelt and Hamont.
 
+Prehn (2012) supplies North Low Saxon literature profiles for Kirchwerder, Altenwerder and Alfstedt (near Bremervörde). These show three phonetic duration degrees, with vowel/coda restrictions, rather than an unqualified ternary phonological system. The tonal finding is scoped to focused declaratives; the one-speaker interrogative observation in Altenwerder remains unresolved. Source links point to the full production/perception chapter and the summary/outlook.
+
 The optional tonal-isogloss layer is an open schematic trace of Gussenhoven & Peters (2019), Fig. 1 (based on Goossens 1965), adapted under CC BY 4.0. The original figure and trace/georeferencing record are in `references/`. Its several-kilometre fitting uncertainty supports a regional overview only, so it is hidden at detailed street-map zoom. No polygon, interpolation between atlas points, or classification by distance to the line is used. Town descriptions determine their labels; unlabelled territory is not classified as lacking tonal accent. Tonal accent and vowel quantity can coexist.
 
 ## Research data

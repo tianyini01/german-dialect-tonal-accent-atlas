@@ -261,6 +261,138 @@
     "language": "Low German"
   },
   {
+    "id": "kirchwerder-low-german",
+    "title": "Kirchwerder Low German",
+    "town": "Kirchwerder",
+    "family": "Low German",
+    "language": "North Low Saxon · Hamburg Masch dialect",
+    "place": "Kirchwerder, Hamburg, Germany",
+    "placeNote": "Literature description from Prehn (2012). The marker identifies the dialect community, not a recording address or a dialect boundary.",
+    "map": {
+      "latitude": 53.41972,
+      "longitude": 10.20156,
+      "precision": "approximate locality anchor",
+      "source": "https://www.geonames.org/2890334/kirchwerder.html",
+      "distributionGeometry": null
+    },
+    "speakerCount": null,
+    "summary": "Prehn (2012) documents three phonetic vowel-duration degrees in this North Low Saxon sample, with vowel and coda restrictions.",
+    "recordings": "No recordings from this place are included in the atlas.",
+    "access": "Literature description only; no atlas token measurements or fitted models.",
+    "measurementSets": [],
+    "typology": {
+      "kind": "length",
+      "classificationSource": "literature",
+      "profile": "quantity",
+      "preferredMeasurement": "duration",
+      "contrast": "Vowel length · short–long–overlong (phonetic)",
+      "atlasEvidence": "No measurements from this place are included in the atlas.",
+      "accentStatus": "No lexical tonal contrast supported in Prehn’s focused declarative data.",
+      "accentPattern": "Declarative F0 does not reliably distinguish long/overlong minimal-pair members.",
+      "quantityPattern": "Complete sample: short, long, overlong. Paired long/overlong separation is clearest for final pre-obstruent vowels; non-final and pre-sonorant contrasts are not consistently supported.",
+      "basis": "Prehn (2012), §3.2.1, p. 68; §3.6.1.1–2, pp. 115–119; §8.2, p. 257.",
+      "caveat": "Findings concern sampled speakers in focused declaratives. Kirchwerder had no local perception test. Three phonetic degrees do not imply three phonemic lengths in Prehn’s analysis.",
+      "sources": [
+        {
+          "label": "Prehn (2012), Chapter 3: production and perception; Table 19, p. 115",
+          "url": "https://pure.uva.nl/ws/files/1168327/101803_07.pdf"
+        },
+        {
+          "label": "Prehn (2012), §8.1–3, pp. 255–259: summary and limitations",
+          "url": "https://pure.uva.nl/ws/files/1168346/101808_12.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "id": "altenwerder-low-german",
+    "title": "Altenwerder Low German",
+    "town": "Altenwerder",
+    "family": "Low German",
+    "language": "North Low Saxon · Hamburg Masch dialect",
+    "place": "Altenwerder, Hamburg, Germany",
+    "placeNote": "Literature description from Prehn (2012). The marker identifies the dialect community, not a recording address or a dialect boundary.",
+    "map": {
+      "latitude": 53.51054,
+      "longitude": 9.8971,
+      "precision": "approximate locality anchor",
+      "source": "https://www.geonames.org/2957416/altenwerder.html",
+      "distributionGeometry": null
+    },
+    "speakerCount": null,
+    "summary": "Prehn (2012) documents three phonetic vowel-duration degrees in this North Low Saxon sample, with vowel and coda restrictions.",
+    "recordings": "No recordings from this place are included in the atlas.",
+    "access": "Literature description only; no atlas token measurements or fitted models.",
+    "measurementSets": [],
+    "typology": {
+      "kind": "length",
+      "classificationSource": "literature",
+      "profile": "quantity",
+      "preferredMeasurement": "duration",
+      "contrast": "Vowel length · short–long–overlong (phonetic)",
+      "atlasEvidence": "No measurements from this place are included in the atlas.",
+      "accentStatus": "No lexical tonal contrast supported in Prehn’s focused declarative data.",
+      "accentPattern": "Declarative F0 does not reliably distinguish long/overlong minimal-pair members.",
+      "quantityPattern": "Complete sample: short, long, overlong. Mid-closed diphthongs can merge; finality and the coda affect duration.",
+      "basis": "Prehn (2012), §3.3.1, p. 79; §3.6.1.1–2, pp. 115–119; §8.2–3, pp. 257–259.",
+      "caveat": "Three phonetic degrees do not imply three phonemic lengths in Prehn’s analysis. Preliminary focused-final interrogatives in one speaker show rise versus fall-rise; their lexical status remains unresolved (§8.3, p. 259).",
+      "sources": [
+        {
+          "label": "Prehn (2012), Chapter 3: production and perception; Table 19, p. 115",
+          "url": "https://pure.uva.nl/ws/files/1168327/101803_07.pdf"
+        },
+        {
+          "label": "Prehn (2012), §8.1–3, pp. 255–259: summary and limitations",
+          "url": "https://pure.uva.nl/ws/files/1168346/101808_12.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "id": "alfstedt-low-german",
+    "title": "Alfstedt Low German",
+    "town": "Alfstedt",
+    "family": "Low German",
+    "language": "North Low Saxon",
+    "place": "Alfstedt (near Bremervörde), Germany",
+    "placeNote": "Literature description from Prehn (2012). The marker identifies the dialect community, not a recording address or a dialect boundary.",
+    "map": {
+      "latitude": 53.54705,
+      "longitude": 9.07035,
+      "precision": "approximate locality anchor",
+      "source": "https://www.geonames.org/2958518/alfstedt.html",
+      "distributionGeometry": null
+    },
+    "speakerCount": null,
+    "summary": "Prehn (2012) documents three phonetic vowel-duration degrees in this North Low Saxon sample, with vowel and coda restrictions.",
+    "recordings": "No recordings from this place are included in the atlas.",
+    "access": "Literature description only; no atlas token measurements or fitted models.",
+    "measurementSets": [],
+    "typology": {
+      "kind": "length",
+      "classificationSource": "literature",
+      "profile": "quantity",
+      "preferredMeasurement": "duration",
+      "contrast": "Vowel length · short–long–overlong (phonetic)",
+      "atlasEvidence": "No measurements from this place are included in the atlas.",
+      "accentStatus": "No lexical tonal contrast supported in Prehn’s focused declarative data.",
+      "accentPattern": "Declarative F0 does not reliably distinguish long/overlong minimal-pair members.",
+      "quantityPattern": "Complete sample: short, long, overlong. Mid vowels can merge long/overlong; no clear pre-sonorant overlength contrast.",
+      "basis": "Prehn (2012), §3.6.1.1–2, pp. 115–119; §8.1–2, pp. 255–257.",
+      "caveat": "Findings concern sampled speakers in focused declaratives. Prehn analyzes binary phonological quantity plus vowel quality; three phonetic degrees do not imply three phonemic lengths.",
+      "sources": [
+        {
+          "label": "Prehn (2012), Chapter 3: production and perception; Table 19, p. 115",
+          "url": "https://pure.uva.nl/ws/files/1168327/101803_07.pdf"
+        },
+        {
+          "label": "Prehn (2012), §8.1–3, pp. 255–259: summary and limitations",
+          "url": "https://pure.uva.nl/ws/files/1168346/101808_12.pdf"
+        }
+      ]
+    }
+  },
+  {
     "id": "cologne-franconian",
     "title": "Cologne Franconian",
     "family": "Franconian",
