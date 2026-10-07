@@ -68,17 +68,22 @@
     ],
     "typology": {
       "kind": "length",
-      "contrast": "Long–overlong vowel duration",
+      "contrast": "Vowel length · long vs overlong",
       "basis": "Atlas condition labels and Ni, Rocker & Köhnlein (2025).",
       "atlasEvidence": "10 speakers and 6 word pairs in the duration table; a separate sample has measured F0 contours.",
-      "caveat": "These are phonetic length classes. The F0 and duration tables use independent speaker codes; the status of lexical tone is not settled by this atlas.",
+      "caveat": "The reported absence of a consistent F0 opposition is evidence from the cited production study, not a proof of absence in all speakers. F0 and independent duration tables use different speaker codes.",
       "sources": [
         {
           "label": "Ni, Rocker & Köhnlein (2025)",
           "url": "https://doi.org/10.7275/amphonology.3047"
         }
       ],
-      "classificationSource": "atlas-and-literature"
+      "classificationSource": "atlas-and-literature",
+      "profile": "quantity",
+      "preferredMeasurement": "duration",
+      "accentStatus": "No consistent tonal opposition demonstrated in the published production study.",
+      "accentPattern": "F0 varies across speakers and word pairs; a stable accent pattern is not established in the cited study.",
+      "quantityPattern": "Short, long and overlong vowels are described in the literature. This atlas samples long vs overlong."
     }
   },
   {
@@ -126,7 +131,7 @@
     ],
     "typology": {
       "kind": "accent",
-      "contrast": "Accent 1–2 word accent",
+      "contrast": "Historical accent classes · current status under study",
       "basis": "Atlas accent labels and Köhnlein, Dang & Ni's comparative fieldwork report.",
       "atlasEvidence": "8 speakers, 12 complete word pairs, F0 and same-token vowel duration in 4 sentence/position contexts.",
       "caveat": "The present-day role of F0 needs a direct contrast test; the research team reports possible tonal neutralization. Focus labels are not fully matched to Leer.",
@@ -136,7 +141,12 @@
           "url": "https://linguistics.unt.edu/files/31st_germanic_linguistics_annual_conference_handbook.pdf"
         }
       ],
-      "classificationSource": "atlas-and-literature"
+      "classificationSource": "atlas-and-literature",
+      "profile": "unresolved",
+      "preferredMeasurement": "f0",
+      "accentStatus": "Historically described Accent 1/2 classes; the current tonal contrast is under study.",
+      "accentPattern": "The atlas provides four separate recorded contexts. No stable present-day accent pattern is assigned here; a conference report suggests tonal neutralization.",
+      "quantityPattern": "Measured vowel durations are available for the same F0 tokens. Their relationship to historical accent classes is under study."
     }
   },
   {
@@ -226,7 +236,7 @@
     ],
     "typology": {
       "kind": "unclassified",
-      "contrast": "Present-day contrast unclassified",
+      "contrast": "Vowel-duration data · accent status unresolved",
       "basis": "Prehn (2012) reviews Feyer's (1941) historical Baden report; current atlas evidence is preliminary.",
       "atlasEvidence": "3 lexical pairs and 33 duration tokens from a first-trip workbook; no F0 measurements are included.",
       "caveat": "The historical report of three phonetic lengths does not classify the current sample. Workbook series and vowel boundaries need independent verification.",
@@ -236,7 +246,12 @@
           "url": "https://pure.uva.nl/ws/files/1168325/101802_06.pdf"
         }
       ],
-      "classificationSource": "unclassified"
+      "classificationSource": "unclassified",
+      "profile": "unresolved",
+      "preferredMeasurement": "duration",
+      "accentStatus": "Not established for the current sample. Duration-only data do not demonstrate the absence of accent.",
+      "accentPattern": "No F0 measurements or verified contemporary accent pattern are included.",
+      "quantityPattern": "Three phonetic vowel lengths were reported historically. The current workbook records lexical duration pairs without verified quantity-class labels."
     }
   },
   {
@@ -308,17 +323,183 @@
     ],
     "typology": {
       "kind": "accent",
-      "contrast": "Accent 1–2 tonal accent (literature)",
-      "basis": "Published Cologne description by Gussenhoven & Peters (2004).",
+      "contrast": "Tonal accent · earlier vs delayed movement (Rule A)",
+      "basis": "Gussenhoven & Peters (2004); Köhnlein & Cameron (2024), §2.2, Fig. 2.",
       "atlasEvidence": "One participant's full-vowel and schwa duration tables, 48 tokens each; no F0 measurements are included here.",
       "caveat": "This atlas sample does not independently reproduce the tonal contrast or map its geographic distribution.",
       "sources": [
         {
           "label": "Gussenhoven & Peters (2004)",
           "url": "https://fileserver-az.core.ac.uk/download/16147733.pdf"
+        },
+        {
+          "label": "Köhnlein & Cameron (2024), §2.2, Fig. 2",
+          "url": "https://d-nb.info/1347343474/34"
         }
       ],
-      "classificationSource": "literature"
+      "classificationSource": "literature",
+      "profile": "accent",
+      "preferredMeasurement": "duration",
+      "accentStatus": "Lexical tonal-accent contrast described in the literature.",
+      "accentPattern": "Focused non-final declaratives contrast an earlier fall with a high contour and delayed fall; interrogatives contrast earlier and later rises.",
+      "quantityPattern": "Accent 2 is reported longer than Accent 1, with context-dependent differences. The atlas duration tables alone do not test the tonal contrast.",
+      "patternRows": [
+        {
+          "context": "Declarative",
+          "class1": "Earlier fall",
+          "class2": "High; delayed fall"
+        },
+        {
+          "context": "Interrogative",
+          "class1": "Earlier rise",
+          "class2": "Low; later rise"
+        }
+      ],
+      "patternNote": "Descriptions concern focused, non-final syllables, not every prosodic context. Class 1/2 follows historical word correspondences in Köhnlein (2013); traditional accent numbering differs in Rule B sources. These descriptions are not measured atlas curves."
+    }
+  },
+  {
+    "id": "arzbach-franconian",
+    "title": "Arzbach Franconian",
+    "family": "Franconian",
+    "place": "Arzbach, Germany",
+    "placeNote": "Published dialect description. The marker is a town anchor, not a speaker location or a dialect boundary.",
+    "map": {
+      "latitude": 50.37902,
+      "longitude": 7.74948,
+      "precision": "approximate town anchor",
+      "source": "https://www.geonames.org/2955376/arzbach.html",
+      "distributionGeometry": null
+    },
+    "speakerCount": null,
+    "summary": "Historically matched word classes reverse the Cologne fall pattern in declaratives. Interrogatives do not show the same reversal.",
+    "recordings": "No recordings from this place are included in the atlas.",
+    "access": "Literature description only; no atlas token measurements or fitted models.",
+    "measurementSets": [],
+    "typology": {
+      "kind": "accent",
+      "classificationSource": "literature",
+      "atlasEvidence": "No measurements from this place are included in the atlas.",
+      "preferredMeasurement": "f0",
+      "profile": "accent",
+      "contrast": "Tonal accent · declarative reversal (Rule B)",
+      "accentStatus": "Lexical tonal-accent contrast described in the literature.",
+      "accentPattern": "Historically matched word classes reverse the Cologne fall pattern in declaratives. Interrogatives do not show the same reversal.",
+      "quantityPattern": "Duration also varies with accent class and context; it is not assigned a fixed short/long ordering here.",
+      "patternRows": [
+        {
+          "context": "Declarative",
+          "class1": "High; delayed fall",
+          "class2": "Earlier fall"
+        },
+        {
+          "context": "Interrogative",
+          "class1": "Earlier rise",
+          "class2": "Low; later rise"
+        }
+      ],
+      "patternNote": "Descriptions concern focused, non-final syllables, not every prosodic context. Class 1/2 follows historical word correspondences in Köhnlein (2013); traditional accent numbering differs in Rule B sources. These descriptions are not measured atlas curves.",
+      "basis": "Köhnlein (2013), §1 and §3.1, example (5).",
+      "caveat": "The published contrast is context-dependent. Historical class numbering is required when comparing Rule A and Rule B. No present-day atlas recordings are available.",
+      "sources": [
+        {
+          "label": "Köhnlein (2013), §1 and §3.1, example (5)",
+          "url": "https://u.osu.edu/koehnlein.3/files/2015/10/Koehnlein_Lingua_final-2kj4gvy.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hasselt-limburgish",
+    "title": "Hasselt Limburgish",
+    "family": "Franconian",
+    "place": "Hasselt, Belgium",
+    "placeNote": "Published dialect description. The marker is a town anchor, not a speaker location or a dialect boundary.",
+    "map": {
+      "latitude": 50.93106,
+      "longitude": 5.33781,
+      "precision": "approximate town anchor",
+      "source": "https://www.geonames.org/2796491/hasselt.html",
+      "distributionGeometry": null
+    },
+    "speakerCount": null,
+    "summary": "Focused non-final syllables distinguish earlier and later rises in both declaratives and interrogatives. The earlier rise is followed by a fall.",
+    "recordings": "No recordings from this place are included in the atlas.",
+    "access": "Literature description only; no atlas token measurements or fitted models.",
+    "measurementSets": [],
+    "typology": {
+      "kind": "accent",
+      "classificationSource": "literature",
+      "atlasEvidence": "No measurements from this place are included in the atlas.",
+      "preferredMeasurement": "f0",
+      "profile": "accent",
+      "contrast": "Tonal accent · earlier vs later rise",
+      "accentStatus": "Lexical tonal-accent contrast described in the literature.",
+      "accentPattern": "Focused non-final syllables distinguish earlier and later rises in both declaratives and interrogatives. The earlier rise is followed by a fall.",
+      "quantityPattern": "No vowel-length classification is added from the tonal patterns alone.",
+      "patternRows": [
+        {
+          "context": "Declarative",
+          "class1": "Earlier rise, then fall",
+          "class2": "Low; later rise"
+        },
+        {
+          "context": "Interrogative",
+          "class1": "Earlier rise, then fall",
+          "class2": "Low; later rise"
+        }
+      ],
+      "patternNote": "Descriptions concern focused, non-final syllables, not every prosodic context. Class 1/2 follows historical word correspondences in Köhnlein (2013); traditional accent numbering differs in Rule B sources. These descriptions are not measured atlas curves.",
+      "basis": "Köhnlein (2013), §3.1, example (5), drawing on Peters (2008).",
+      "caveat": "This is a published focused, non-final pattern, not a claim about all positions or a new analysis of Hasselt tokens.",
+      "sources": [
+        {
+          "label": "Köhnlein (2013), §3.1, example (5)",
+          "url": "https://u.osu.edu/koehnlein.3/files/2015/10/Koehnlein_Lingua_final-2kj4gvy.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "id": "weert-limburgish",
+    "title": "Weert Limburgish",
+    "family": "Franconian",
+    "place": "Weert, Netherlands",
+    "placeNote": "Published dialect description. The marker is a town anchor, not a speaker location or a dialect boundary.",
+    "map": {
+      "latitude": 51.25167,
+      "longitude": 5.70694,
+      "precision": "approximate town anchor",
+      "source": "https://www.geonames.org/2744911/weert.html",
+      "distributionGeometry": null
+    },
+    "speakerCount": null,
+    "summary": "Short–long vowel quantity contrasts persist across intonational contexts in the cited studies.",
+    "recordings": "No recordings from this place are included in the atlas.",
+    "access": "Literature description only; no atlas token measurements or fitted models.",
+    "measurementSets": [],
+    "typology": {
+      "kind": "length",
+      "classificationSource": "literature",
+      "atlasEvidence": "No measurements from this place are included in the atlas.",
+      "preferredMeasurement": "duration",
+      "profile": "quantity",
+      "contrast": "Vowel length · short vs long",
+      "accentStatus": "No lexical tonal-accent contrast reported in the cited studies.",
+      "accentPattern": "The cited descriptions report loss of the earlier tonal-accent opposition; remaining lexical contrasts are realised by vowel quantity.",
+      "quantityPattern": "Short–long vowel quantity contrasts persist across intonational contexts in the cited studies.",
+      "basis": "Köhnlein (2015), §4.1; Gussenhoven & Peters (2019), §3.2.1.",
+      "caveat": "This is a literature-based description of the studied variety. No Weert tokens are included, and no geographic boundary or universal historical pathway is inferred.",
+      "sources": [
+        {
+          "label": "Köhnlein (2015), §4.1",
+          "url": "https://u.osu.edu/koehnlein.3/files/2015/10/Koehnlein_2015_Diachronica-u5wxck.pdf"
+        },
+        {
+          "label": "Gussenhoven & Peters (2019), §3.2.1",
+          "url": "https://www.cambridge.org/core/journals/phonology/article/franconian-tones-fare-better-as-tones-than-as-feet-a-reply-to-kohnlein-2016/76ADA3C5BF45D85B5C112ABCDA846950"
+        }
+      ]
     }
   }
 ]

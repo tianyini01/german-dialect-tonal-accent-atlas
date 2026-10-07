@@ -10,6 +10,12 @@ This repository is the complete static website. Edit `index.html`, `styles.css`,
 
 To preview locally from this directory, run `python3 -m http.server 8000` and open `http://localhost:8000/`.
 
+## Contrast profiles
+
+The map separates published tonal-accent patterns from vowel-quantity descriptions. Accent patterns are described for a specified sentence type and position; historical word classes are kept consistent when comparing Rule A and Rule B. Aachen and Baden retain unresolved current accent status. No F0 dataset is taken as proof of the absence of tonal accent.
+
+Arzbach, Hasselt and Weert are literature entries with source links, not new measurement datasets. Quantity entries open duration analysis by default; Leer F0 remains available as supplementary measurements and for etymology comparisons. Marker colors continue to identify language groups.
+
 ## Research data
 
 `data/` contains the approved derived CSV measurements and model summaries used by the site. These files are public in this repository and accessible to browsers. Original recordings, TextGrid annotations, fieldwork workbooks, photographs, and exact speaker coordinates are not included. The atlas describes candidate lexical alignments and keeps each dataset's recorded conditions and contexts separate.

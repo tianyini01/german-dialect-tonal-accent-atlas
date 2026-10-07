@@ -5,10 +5,10 @@ import { comparisonConditions, comparablePairNames, matchedSpeakerGroups,
   sharedSpeakerPairs } from "./speaker-comparison.mjs";
 import { renderGammView } from "./gamm-view.mjs";
 import { renderPhysicalTimeGammView } from "./physical-gamm-view.mjs";
-import { renderAtlasMap } from "./atlas.mjs";
-import { renderLiveAtlasMap, destroyLiveAtlasMap } from "./live-atlas.mjs";
+import { renderAtlasMap } from "./atlas.mjs?v=21";
+import { renderLiveAtlasMap, destroyLiveAtlasMap } from "./live-atlas.mjs?v=21";
 import { languageColor } from "./map-palette.mjs";
-import { contrastBasisClass, contrastSymbol } from "./typology-map.mjs";
+import { contrastBasisClass, contrastSymbol } from "./typology-map.mjs?v=21";
 import { linkedWordSets, orderLinkedGroups } from "./linked-word-sets.mjs?v=19";
 import { renderEvidenceCard } from "./evidence-cards.mjs";
 
@@ -17,7 +17,7 @@ const state = { catalog: [], basemap: null, loaded: null, loadedSet: null, loade
   comparisonLoaded: null, comparisonSet: null, loadRequest: 0, compareRequest: 0, liveMapFailed: false, lastResult: null,
   uploadTarget: null, sessionUploads: new Map(), includedCache: new Map(), localityEntries: [],
   detailActive: false, durationEntryId: null, gammModels: null, physicalGammModels: null, activeDialectId: null,
-  linkedLoaded: null, linkedRequest: 0 };
+  linkedLoaded: null, linkedRequest: 0, workspaceKind: null };
 const gammSetKeys = { "leer-f0": "leer", "aachen-f0": "aachen" };
 const element = (tag, className = "", content = "") => {
   const node = document.createElement(tag);
@@ -29,7 +29,11 @@ const format = value => Number(value).toLocaleString(undefined, { maximumFractio
 const findSet = id => state.catalog.flatMap(dialect => dialect.measurementSets.map(set => ({ dialect, set }))).find(item => item.set.id === id);
 const findDialect = id => state.catalog.find(dialect => dialect.id === id);
 const activeDialect = () => findDialect(state.activeDialectId);
-const contourFirst = sets => [...sets].sort((a, b) => Number(b.kind === "f0") - Number(a.kind === "f0"));
+const orderedSets = dialect => [...dialect.measurementSets].sort((a, b) =>
+  Number(b.kind === dialect.typology?.preferredMeasurement) - Number(a.kind === dialect.typology?.preferredMeasurement));
+const visibleLocalityEntries = () => state.localityEntries.filter(entry =>
+  activeDialect()?.typology?.profile !== "quantity" || state.workspaceKind !== "duration"
+  || entry.selected.set.kind === "duration");
 const uploadsForDialect = dialect => [...state.sessionUploads.values()].filter(upload => upload.dialect.id === dialect.id);
 const pairedF0 = () => {
   if (state.loaded?.kind !== "f0") return false;
@@ -125,6 +129,7 @@ async function chooseSetAndAnalyze(set) {
   await onSourceChange(set.id);
 }
 async function openDialectWorkspace(dialect) {
+  if (!dialect.measurementSets.some(set => set.dataFile)) { showDialect(dialect); return; }
   state.uploadTarget = null;
   state.activeDialectId = dialect.id;
   if ($("dataset-dialog").open) $("dataset-dialog").close();
@@ -170,16 +175,19 @@ async function chooseUploadedAndAnalyze(upload) {
 function filteredCatalog() {
   const query = $("search").value.trim().toLowerCase();
   const family = $("family-filter").value;
+  const contrast = $("contrast-filter").value;
   const place = $("place-filter").value;
   return state.catalog.filter(dialect => {
     const searchable = [dialect.title, dialect.family, dialect.place, dialect.summary,
+      dialect.typology?.contrast, dialect.typology?.accentPattern, dialect.typology?.quantityPattern,
       ...dialect.measurementSets.flatMap(set => [set.title, set.summary, ...set.variables])].join(" ").toLowerCase();
     return (!query || searchable.includes(query)) && (!family || dialect.family === family)
-      && (!place || dialect.place === place);
+      && (!contrast || dialect.typology?.profile === contrast) && (!place || dialect.place === place);
   });
 }
-function placesForFamily(family) {
-  return [...new Set(state.catalog.filter(dialect => !family || dialect.family === family)
+function placesForFamily(family, contrast = $("contrast-filter").value) {
+  return [...new Set(state.catalog.filter(dialect => (!family || dialect.family === family)
+    && (!contrast || dialect.typology?.profile === contrast))
     .map(dialect => dialect.place).filter(Boolean))].sort();
 }
 function updatePlaceOptions() {
@@ -203,6 +211,7 @@ function renderCatalog() {
     if (!filtered.some(item => item.id === dialect.id)) {
       $("search").value = "";
       $("family-filter").value = "";
+      $("contrast-filter").value = "";
       updatePlaceOptions();
       $("place-filter").value = "";
       renderCatalog();
@@ -249,6 +258,8 @@ function renderCatalog() {
     symbol.setAttribute("aria-hidden", "true");
     const content = element("span", "typology-card-copy");
     content.append(element("strong", "", dialect.title), element("span", "", dialect.typology?.contrast || "Present-day type unclassified"));
+    content.append(element("span", "typology-card-evidence", dialect.measurementSets.length
+      ? "Atlas measurements · View profile" : "Literature · View pattern and source"));
     card.append(symbol, content);
     card.addEventListener("click", () => showDialect(dialect));
     typologyList.append(card);
@@ -256,14 +267,55 @@ function renderCatalog() {
   $("catalog-empty").hidden = filtered.length > 0;
 }
 
+function renderPatternDescription(container, dialect) {
+  container.replaceChildren();
+  const typology = dialect.typology;
+  if (!typology?.patternRows?.length) return;
+  container.append(element("h3", "", "Published accent pattern"));
+  const wrap = element("div", "table-wrap");
+  const table = element("table", "pattern-table");
+  const caption = element("caption", "", "Focused, non-final position · historically corresponding word classes");
+  table.append(caption);
+  const head = element("thead");
+  const headings = element("tr");
+  ["Sentence type", "Class 1", "Class 2"].forEach(label => {
+    const cell = element("th", "", label); cell.scope = "col"; headings.append(cell);
+  });
+  head.append(headings);
+  const body = element("tbody");
+  typology.patternRows.forEach(pattern => {
+    const row = element("tr");
+    const context = element("th", "", pattern.context); context.scope = "row";
+    row.append(context, element("td", "", pattern.class1), element("td", "", pattern.class2));
+    body.append(row);
+  });
+  table.append(head, body); wrap.append(table); container.append(wrap);
+  container.append(element("p", "field-note", typology.patternNote));
+}
+
+function renderWorkspaceProfile(dialect) {
+  const profile = $("workspace-profile");
+  profile.hidden = false;
+  profile.replaceChildren(element("strong", "", `${dialect.title} · ${dialect.typology.contrast}`),
+    element("p", "", dialect.typology.profile === "quantity"
+      ? `${dialect.typology.quantityPattern} ${dialect.typology.accentStatus}`
+      : dialect.typology.accentPattern));
+  const button = element("button", "quiet-button", "View contrast profile and sources");
+  button.type = "button"; button.addEventListener("click", () => showDialect(dialect));
+  profile.append(button);
+}
+
 function showDialect(dialect) {
   $("dialog-type").textContent = dialect.family.toUpperCase();
   $("dialog-title").textContent = dialect.title;
   $("dialog-summary").textContent = dialect.summary;
+  renderPatternDescription($("dialog-pattern"), dialect);
   const fields = [
     ["Variety", dialect.title], ["Location", `${dialect.place}. ${dialect.placeNote}`],
     ["Map position", `${dialect.map.precision}; source: ${dialect.map.source}. ${dialect.map.distributionGeometry && dialect.map.distributionSource ? `Dialect-area source: ${dialect.map.distributionSource}.` : "No verified dialect-area boundary."}`],
-    ["Documented contrast", dialect.typology?.contrast || "Not classified"],
+    ["Accent status", dialect.typology?.accentStatus || "Not established"],
+    ["Accent pattern", dialect.typology?.accentPattern || "Not established"],
+    ["Vowel length", dialect.typology?.quantityPattern || "Not established"],
     ["Classification basis", dialect.typology?.basis || "Not established"],
     ["Evidence in this atlas", dialect.typology?.atlasEvidence || "No comparable measurements"],
     ["Interpretation limit", dialect.typology?.caveat || "Classification requires further evidence"],
@@ -287,28 +339,13 @@ function showDialect(dialect) {
   }
   const sets = $("dialog-measurements");
   sets.replaceChildren(element("h3", "", "Available measurements"));
-  if (!dialect.measurementSets.length) sets.append(element("p", "fieldwork-note", "Source files are identified, but no measurement set has been verified for browser analysis."));
+  if (!dialect.measurementSets.length) sets.append(element("p", "field-note", "Literature entry. No token measurements or model curves from this place are included in the atlas."));
   const sessionUploads = uploadsForDialect(dialect);
-  const listedKinds = new Set([...dialect.measurementSets.map(set => set.kind), ...sessionUploads.map(upload => upload.kind)]);
-  const appendMissing = kind => {
-    if (listedKinds.has(kind)) return;
-    const section = element("section", "dialog-set missing-data-set");
-    const hasF0TokenDurations = kind === "duration" && dialect.measurementSets.some(set => set.kind === "f0" && set.dataFile);
-    section.append(element("h4", "", kind === "f0" ? "No F0 contours included"
-      : hasF0TokenDurations ? "No independent duration table included" : "No vowel-duration table included"));
-    section.append(element("p", "", hasF0TokenDurations
-      ? "The included F0 tokens carry measured vowel durations, which are displayed together with their contours in the analysis view. You can also open an independent duration CSV from this device for a local comparison."
-      : "Open a compatible CSV from this device to compare it locally. The file is not saved to the atlas catalog."));
-    const button = element("button", "quiet-button", kind === "f0" ? "Open an F0 CSV" : hasF0TokenDurations ? "Open an independent duration CSV" : "Open a duration CSV");
-    button.type = "button";
-    button.addEventListener("click", () => openLocalCsvForDialect(dialect, kind));
-    section.append(button);
-    sets.append(section);
-  };
-  appendMissing("f0");
-  contourFirst(dialect.measurementSets).forEach(set => {
+  orderedSets(dialect).forEach(set => {
     const section = element("section", "dialog-set");
-    section.append(element("h4", "", set.title));
+    const auxiliaryF0 = dialect.typology?.profile === "quantity" && set.kind === "f0";
+    section.append(element("h4", "", auxiliaryF0 ? `${set.title} · supplementary measurement` : set.title));
+    if (auxiliaryF0) section.append(element("p", "", "Measured F0 is available as supplementary data. Its presence does not establish a tonal accent contrast."));
     if (set.rowCount != null) section.append(element("p", "", `${format(set.rowCount)} ${set.rowUnit} · ${set.itemCount} · ${set.contextCount}`));
     section.append(element("p", "", set.summary));
     const details = element("details", "set-details-toggle");
@@ -331,7 +368,6 @@ function showDialect(dialect) {
     section.append(button);
     sets.append(section);
   });
-  appendMissing("duration");
   $("dataset-dialog").showModal();
 }
 
@@ -675,6 +711,10 @@ function showLoadedData(loaded, sourceLabel, selected = null, detailActive = tru
     speaker: $("speaker-filter").value };
   state.detailActive = detailActive;
   state.loaded = loaded;
+  if (state.workspaceKind !== loaded.kind) {
+    state.workspaceKind = loaded.kind;
+    if (activeDialect()) renderLocalityOverview(activeDialect());
+  }
   state.loadedSet = selected;
   state.loadedSource = sourceLabel;
   state.loadedUnit = selected?.set.analysisUnit || "speaker";
@@ -701,7 +741,7 @@ function showLoadedData(loaded, sourceLabel, selected = null, detailActive = tru
   populateSelect($("pair-filter"), levels(loaded.rows, "pair"), boundPairComparison() ? null : "All word pairs",
     keepShared ? previous.pair : initial?.pair || selected?.set.defaultPair);
   populateSelect($("condition-filter"), levels(loaded.rows, "condition"), "All conditions", keepShared ? previous.condition : null);
-  const anyF0 = state.localityEntries.some(entry => entry.loaded?.kind === "f0");
+  const anyF0 = visibleLocalityEntries().some(entry => entry.loaded?.kind === "f0");
   $("display-controls").hidden = !anyF0;
   $("time-axis-wrap").hidden = !anyF0;
   updateTimeAxisControls();
@@ -829,7 +869,7 @@ function sharedGroupsForEntry(entry, { mode, valueA, valueB, pair, context, cond
 }
 function renderOtherCards(filters, controls) {
   const activeId = state.loadedSet?.set.id;
-  for (const entry of state.localityEntries) {
+  for (const entry of visibleLocalityEntries()) {
     if (!entry.loaded || (state.detailActive && entry.selected.set.id === activeId)) continue;
     const card = [...document.querySelectorAll(".overview-card[data-set-id]")]
       .find(item => item.dataset.setId === entry.selected.set.id);
@@ -863,10 +903,12 @@ function renderLocalityOverview(dialect) {
   $("locality-overview").hidden = false;
   $("overview-title").textContent = dialect.title;
   $("overview-note").textContent = dialect.id === "leer-low-german"
-    ? "F0 and the displayed vowel durations share the same measured tokens. The independent duration table can be opened from the dialect metadata; its speaker IDs are separate."
+    ? state.workspaceKind === "duration"
+      ? "Vowel length is the primary comparison. Supplementary F0 measurements are available in the contrast profile; their speaker IDs use a separate system."
+      : "F0 and the displayed vowel durations share the same measured tokens. The independent duration table uses separate speaker IDs."
     : "Choose a measurement to compare its recorded groups.";
   const leerDurationIds = ["leer-f0-token-duration", "leer-duration"];
-  state.localityEntries.filter(entry => dialect.id !== "leer-low-german" || entry.upload
+  visibleLocalityEntries().filter(entry => dialect.id !== "leer-low-german" || entry.upload
     || !leerDurationIds.includes(entry.selected.set.id)
     || entry.selected.set.id === state.durationEntryId).forEach(entry => {
     const { selected, loaded, error, derived } = entry;
@@ -905,29 +947,6 @@ function renderLocalityOverview(dialect) {
     }
     grid.append(card);
   });
-  const hasF0 = state.localityEntries.some(entry => entry.selected.set.kind === "f0" && entry.loaded);
-  if (!hasF0) {
-    const missing = element("article", "overview-card overview-missing");
-    missing.append(element("span", "contour-tag", "F0 · HZ"),
-      element("h4", "", "No F0 contours included"),
-      element("p", "", "This locality currently has duration measurements only. Open a compatible F0 CSV for a temporary local comparison."));
-    const button = element("button", "quiet-button", "Open an F0 CSV");
-    button.type = "button";
-    button.addEventListener("click", () => openLocalCsvForDialect(dialect, "f0"));
-    missing.append(button);
-    grid.append(missing);
-  }
-  if (!state.localityEntries.some(entry => entry.selected.set.kind === "duration" && entry.loaded)) {
-    const missing = element("article", "overview-card overview-missing");
-    missing.append(element("span", "duration-tag", "DURATION · MS"),
-      element("h4", "", "No duration table included"),
-      element("p", "", "This locality currently has no measured duration table. Open a compatible duration CSV for a temporary local comparison."));
-    const button = element("button", "quiet-button", "Open a duration CSV");
-    button.type = "button";
-    button.addEventListener("click", () => openLocalCsvForDialect(dialect, "duration"));
-    missing.append(button);
-    grid.append(missing);
-  }
 }
 async function onSourceChange(preferredSetId = null) {
   const request = ++state.loadRequest;
@@ -937,6 +956,7 @@ async function onSourceChange(preferredSetId = null) {
   $("custom-data-panel").open = false;
   $("analysis-mode").disabled = false;
   if (!dialect) { setStatus("Choose a dialect."); return; }
+  renderWorkspaceProfile(dialect);
   $("locality-overview").hidden = false;
   $("overview-title").textContent = dialect.title;
   $("overview-note").textContent = "Loading all included measurements…";
@@ -944,7 +964,7 @@ async function onSourceChange(preferredSetId = null) {
   $("overview-grid").replaceChildren();
   $("source-note").textContent = "";
   setStatus("Loading included measurements…");
-  const selections = contourFirst(dialect.measurementSets).filter(set => set.dataFile).map(set => ({ dialect, set }));
+  const selections = orderedSets(dialect).filter(set => set.dataFile).map(set => ({ dialect, set }));
   const entries = await Promise.all(selections.map(async selected => {
     try { return { selected, loaded: await loadIncludedSetCached(selected) }; }
     catch (error) { return { selected, error }; }
@@ -964,8 +984,11 @@ async function onSourceChange(preferredSetId = null) {
   }
   const linkedDuration = state.localityEntries.find(entry => entry.loaded && entry.derived);
   const broadDuration = state.localityEntries.find(entry => entry.loaded && entry.selected.set.id === "leer-duration");
+  const preferred = state.localityEntries.find(entry => entry.loaded && entry.selected.set.id === preferredSetId)
+    || state.localityEntries.find(entry => entry.loaded);
+  state.workspaceKind = preferred?.loaded.kind || dialect.typology?.preferredMeasurement;
   state.durationEntryId = dialect.id === "leer-low-german"
-    ? preferredSetId === "leer-duration" && broadDuration ? "leer-duration"
+    ? state.workspaceKind === "duration" && broadDuration ? "leer-duration"
       : linkedDuration?.selected.set.id || broadDuration?.selected.set.id || null
     : null;
   uploadsForDialect(dialect).forEach(upload => state.localityEntries.push(entryForUpload(upload)));
@@ -1393,9 +1416,11 @@ function runAnalysis() {
     const physicalGamm = availableGamm({ mode, pair, context, valueA, valueB },
       state.physicalGammModels, "Physical-time");
     const isF0 = state.loaded.kind === "f0";
-    $("contour-view-wrap").hidden = !isF0 || !state.detailActive;
-    $("contour-view").querySelector('option[value="gamm"]').disabled = !gamm.model;
-    $("contour-view").querySelector('option[value="gamm-physical"]').disabled = !physicalGamm.model;
+    $("contour-view-wrap").hidden = !isF0 || !state.detailActive || (!gamm.model && !physicalGamm.model);
+    for (const [value, model] of [["gamm", gamm.model], ["gamm-physical", physicalGamm.model]]) {
+      const option = $("contour-view").querySelector(`option[value="${value}"]`);
+      option.disabled = !model; option.hidden = !model;
+    }
     const selectedView = $("contour-view").value;
     $("contour-view-note").textContent = selectedView === "gamm-physical"
       ? "This new exploratory GAMM is fitted to measured milliseconds and Hz; each curve ends at its condition's observed median vowel duration. Speaker and pair filters do not refit it."
@@ -1412,7 +1437,7 @@ function runAnalysis() {
       $("gamm-chart").hidden = false;
       $("kpis").hidden = true;
       $("summary-table").hidden = true;
-      const anyF0 = state.localityEntries.some(entry => entry.loaded?.kind === "f0");
+      const anyF0 = visibleLocalityEntries().some(entry => entry.loaded?.kind === "f0");
       $("time-axis-wrap").hidden = !anyF0;
       $("display-controls").hidden = !anyF0;
       $("time-axis-note").textContent = "The physical-time GAMM uses measured milliseconds. This setting applies to the measured F0 cards in the workspace.";
@@ -1434,7 +1459,7 @@ function runAnalysis() {
       $("gamm-chart").hidden = false;
       $("kpis").hidden = true;
       $("summary-table").hidden = true;
-      const anyF0 = state.localityEntries.some(entry => entry.loaded?.kind === "f0");
+      const anyF0 = visibleLocalityEntries().some(entry => entry.loaded?.kind === "f0");
       $("time-axis-wrap").hidden = !anyF0;
       $("display-controls").hidden = !anyF0;
       $("time-axis-note").textContent = "The GAMM card always uses 0–100% time. This setting applies to other measured F0 cards in the workspace.";
@@ -1457,7 +1482,7 @@ function runAnalysis() {
     $("gamm-chart").replaceChildren();
     $("kpis").hidden = false;
     $("summary-table").hidden = false;
-    const anyF0 = state.localityEntries.some(entry => entry.loaded?.kind === "f0");
+    const anyF0 = visibleLocalityEntries().some(entry => entry.loaded?.kind === "f0");
     $("time-axis-wrap").hidden = !anyF0;
     $("display-controls").hidden = !anyF0;
     updateTimeAxisControls();
@@ -1471,7 +1496,7 @@ function runAnalysis() {
         : `${valueA} vs ${valueB} · ${kindLabel}`;
     const notes = [state.loadedSet?.set.timeBasis, mode === "dataset" ? state.comparisonSet?.set.timeBasis : null,
       datasetPaired
-        ? `Each source contributes both recorded conditions from one complete pair or word; incomplete speaker/context cells are excluded. First source: ${valueA}, ${context}. Second source: ${valueB}, ${secondContext}. These are independent designs with source-specific condition labels${[state.loadedSet?.set.id, state.comparisonSet?.set.id].includes("leer-f0") && [state.loadedSet?.set.id, state.comparisonSet?.set.id].includes("aachen-f0") ? " (Leer vowel length and Aachen tonal accent)" : ""}; the four groups are a descriptive comparison, not a pooled effect or significance test.`
+        ? `Each source contributes both recorded conditions from one complete pair or word; incomplete speaker/context cells are excluded. First source: ${valueA}, ${context}. Second source: ${valueB}, ${secondContext}. These are independent designs with source-specific condition labels${[state.loadedSet?.set.id, state.comparisonSet?.set.id].includes("leer-f0") && [state.loadedSet?.set.id, state.comparisonSet?.set.id].includes("aachen-f0") ? " (Leer vowel length and Aachen historical accent classes)" : ""}; the four groups are a descriptive comparison, not a pooled effect or significance test.`
         : null,
       paired && mode === "speaker" ? `Each speaker has both ${conditions.join(" and ")} in the same recorded pair and context. The two speaker groups use the same chart scales.` : null]
       .filter(Boolean).join(" ");
@@ -1517,10 +1542,11 @@ function registerWebMcp() {
     {
       name: "filter_dialect_atlas",
       title: "Filter dialect atlas",
-      description: "Search the visible dialect atlas by text, language group, and place. Place choices depend on the selected language group.",
+      description: "Search the visible dialect atlas by text, language group, contrast profile, and place. Place choices depend on the language group and contrast.",
       inputSchema: { type: "object", properties: {
         query: { type: "string" },
         family: { type: "string" },
+        contrast: { type: "string", enum: ["", "accent", "quantity"] },
         place: { type: "string" }
       }, additionalProperties: false },
       annotations: { readOnlyHint: false, untrustedContentHint: false },
@@ -1529,10 +1555,13 @@ function registerWebMcp() {
         if (input.query !== undefined && typeof input.query !== "string") throw new Error("query must be text.");
         if (input.family !== undefined && input.family !== "" && !state.catalog.some(dialect => dialect.family === input.family)) throw new Error("Invalid language group.");
         const family = input.family ?? $("family-filter").value;
-        if (input.place !== undefined && input.place !== "" && !placesForFamily(family).includes(input.place))
-          throw new Error("Invalid place for the selected language group.");
+        const contrast = input.contrast ?? $("contrast-filter").value;
+        if (!["", "accent", "quantity"].includes(contrast)) throw new Error("Invalid contrast profile.");
+        if (input.place !== undefined && input.place !== "" && !placesForFamily(family, contrast).includes(input.place))
+          throw new Error("Invalid place for the selected language group and contrast.");
         if (input.query !== undefined) $("search").value = input.query;
         if (input.family !== undefined) $("family-filter").value = input.family;
+        if (input.contrast !== undefined) $("contrast-filter").value = input.contrast;
         updatePlaceOptions();
         if (input.place !== undefined) $("place-filter").value = input.place;
         renderCatalog();
@@ -1633,6 +1662,7 @@ async function init() {
   }
   $("search").addEventListener("input", renderCatalog);
   $("family-filter").addEventListener("change", () => { updatePlaceOptions(); renderCatalog(); });
+  $("contrast-filter").addEventListener("change", () => { updatePlaceOptions(); renderCatalog(); });
   $("place-filter").addEventListener("change", renderCatalog);
   $("analysis-mode").addEventListener("change", () => { $("file-input").value = ""; updateMode(); });
   $("file-input").addEventListener("change", onFileChange);

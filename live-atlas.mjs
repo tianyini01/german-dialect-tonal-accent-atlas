@@ -1,5 +1,5 @@
 import { languageColor } from "./map-palette.mjs";
-import { contrastBasisClass, contrastSymbol } from "./typology-map.mjs";
+import { contrastBasisClass, contrastSymbol } from "./typology-map.mjs?v=21";
 
 const maps = new WeakMap();
 const TILE_URL = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -150,7 +150,7 @@ function syncMarkers(state, entries, visibleIds) {
       if (path) {
         path.setAttribute("role", "button");
         path.setAttribute("tabindex", "0");
-        path.setAttribute("aria-label", `${entry.title}: ${entry.typology?.contrast || "classification pending"}. View data`);
+        path.setAttribute("aria-label", `${entry.title}: ${entry.typology?.contrast || "classification pending"}. ${entry.measurementSets?.length ? "View data" : "View published profile"}`);
         path.addEventListener("keydown", event => {
           if (event.key !== "Enter" && event.key !== " ") return;
           event.preventDefault();
@@ -162,7 +162,7 @@ function syncMarkers(state, entries, visibleIds) {
       item.entry = entry;
       item.marker.setLatLng(latLng);
       item.marker.setTooltipContent(tooltipContent(entry));
-      item.marker.getElement()?.setAttribute("aria-label", `${entry.title}: ${entry.typology?.contrast || "classification pending"}. View data`);
+      item.marker.getElement()?.setAttribute("aria-label", `${entry.title}: ${entry.typology?.contrast || "classification pending"}. ${entry.measurementSets?.length ? "View data" : "View published profile"}`);
     }
     item.marker.setOpacity(visible ? 1 : 0.35);
     item.marker.setZIndexOffset(visible ? 1000 : 0);

@@ -1,5 +1,5 @@
 import { languageColor } from "./map-palette.mjs";
-import { contrastBasisClass, contrastSymbol } from "./typology-map.mjs";
+import { contrastBasisClass, contrastSymbol } from "./typology-map.mjs?v=21";
 
 const SVG_NS = "http://www.w3.org/2000/svg";
 const WIDTH = 720;
@@ -115,7 +115,7 @@ export function renderAtlasMap(container, entries, visibleIds, basemap, onSelect
     button.type = "button";
     button.className = `map-marker${visibleIds.has(entry.id) ? "" : " muted"}${crowded ? " compact" : ""}`;
     button.style.setProperty("--marker-color", languageColor(entry.family));
-    button.setAttribute("aria-label", `${entry.title}, ${entry.family || "unspecified language group"}, ${entry.place}; ${entry.typology?.contrast || "classification pending"}; view measurements`);
+    button.setAttribute("aria-label", `${entry.title}, ${entry.family || "unspecified language group"}, ${entry.place}; ${entry.typology?.contrast || "classification pending"}; ${entry.measurementSets?.length ? "view measurements" : "view published profile"}`);
     button.title = `${entry.title} · ${entry.typology?.contrast || "classification pending"}`;
     const dot = document.createElement("span");
     dot.className = `map-dot ${contrastBasisClass(entry)}`;

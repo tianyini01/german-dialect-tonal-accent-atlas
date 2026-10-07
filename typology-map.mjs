@@ -1,12 +1,12 @@
 export function contrastSymbol(entry) {
-  switch (entry?.typology?.kind) {
-    case "length": return "L";
+  switch (entry?.typology?.profile) {
+    case "quantity": return "Q";
     case "accent": return "A";
     default: return "?";
   }
 }
 
 export function contrastBasisClass(entry) {
-  if (entry?.typology?.kind === "unclassified") return "unclassified";
+  if (entry?.typology?.profile === "unresolved") return "unclassified";
   return entry?.typology?.classificationSource === "literature" ? "literature-only" : "";
 }
